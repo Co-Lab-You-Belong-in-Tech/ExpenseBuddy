@@ -49,24 +49,21 @@ class User(db.Model, UserMixin):
     def __repr__(self):
         return f'User {self.email} has been added to the database'
 
-class Whiskey(db.Model):
-    id = db.Column(db.String, primary_key = True)
-    brand = db.Column(db.String(150), nullable = False)
-    category = db.Column(db.String(150), nullable = False)
-    desc = db.Column(db.String(150), nullable = False)
-    age = db.Column(db.NUMERIC(4))
-    value = db.Column(db.NUMERIC(10,2))
+class Expense(db.Model):
+    expense_id = db.Column(db.String, primary_key = True)
+    expense_date = db.Column(db.DateTime, nullable = False, default = datetime.utcnow)
+    expense_type = db.Column(db.String(150), nullable = False)
+    expense_dollar_amt = db.Column(db.NUMERIC(10,2))
+    expense_mileage = db.Column(db.NUMERIC(10,2))
 
     user_token = db.Column(db.String, db.ForeignKey('user.token'), nullable = False)
 
-    def __init__(self,brand,category,desc,age,value,user_token, id = ''):
-        self.id = self.set_id()
-        self.brand = brand
-        self.category = category
-        self.desc = desc
-        self.age = age
-        self.value = value
-        self.user_token = user_token
+    def __init__(self, expense_date, expense_type, expense_dollar_amt, expense_mileage, expense_id = ''):
+        self.expense_id = self.set_id()
+        self.expense_date = expense_date
+        self.expense_type = expense_type
+        self.expense_dollar_amt = expense_dollar_amt
+        self.expense_mileage = expense_mileage
 
 
     def __repr__(self):
@@ -75,9 +72,42 @@ class Whiskey(db.Model):
     def set_id(self):
         return (secrets.token_urlsafe())
 
-class WhiskeySchema(ma.Schema):
+class ExpenseSchema(ma.Schema):
     class Meta:
-        fields = ['id','brand', 'catagory', 'desc' ,'age','value']
+        fields = ['expense_id','expense_date', 'expense_type', 'expense_dollar_amt' ,'expense_mileage']
 
-whiskey_schema = WhiskeySchema()
-whiskeys_schema = WhiskeySchema(many=True)
+expense_schema = ExpenseSchema()
+expenses_schema = ExpenseSchema(many=True)
+
+class Address(db.Model):
+    address_id = db.Column(db.String, primary_key = True)
+    street_1 = db.Column(db.String(150), nullable = False)
+    street_2 = db.Column(db.String(150))
+    city = db.Column(db.String(150))
+    state = db.Column(db.String(2))
+    zip = db.Column(db.NUMERIC(5))
+    address_type = db.Column(db.String(150))
+
+    user_token = db.Column(db.String, db.ForeignKey('user.token'), nullable = False)
+
+    def __init__(self, street_1, street_2, city, state, zip, address_type, address_id = ''):
+        self.address_id = self.set_id()
+        self.street_1 = street_1
+        self.street_2 = street_2
+        self.city = city
+        self.state = state
+        self.zip = zip
+        self.address_type = address_type
+
+    def __repr__(self):
+        return f'The address has been added!'
+
+    def set_id(self):
+        return (secrets.token_urlsafe())
+    
+class AddressSchema(ma.Schema):
+    class Meta:
+        fields = ['address_id','street_1', 'street_2', 'city' ,'state', 'zip', 'address_type']
+
+address_schema = AddressSchema()
+addresses_schema = AddressSchema(many=True)
