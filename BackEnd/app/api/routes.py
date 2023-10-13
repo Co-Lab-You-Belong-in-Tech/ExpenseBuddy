@@ -35,9 +35,9 @@ def get_expense(current_user_token):
     return jsonify(response)
 
 #Optional 
-@api.route('/whiskey/<expense_id>', methods = ['GET'])
+@api.route('/expense/<expense_id>', methods = ['GET'])
 @token_required
-def get_single_whiskey(current_user_token, expense_id):
+def get_single_expense(current_user_token, expense_id):
     expense = Expense.query.get(expense_id)
     response = expense_schema.dump(expense)
     return jsonify(response)
