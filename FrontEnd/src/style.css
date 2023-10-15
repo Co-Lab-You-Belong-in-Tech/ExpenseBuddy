@@ -1,0 +1,61 @@
+:root {
+  font-family: 'Lexend', sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+.main-container {
+  border: 1px solid #213547;
+
+  margin: 0 auto;
+  height: 92.1px;
+  width: 390px;
+  min-width: 390px;
+}
+
+.bottom-nav {
+  display: flex;
+  flex-direction: row;
+}
+
+.nav-icon {
+  display: flex;
+  height: 64px;
+  padding: 11.44px 0px 9.84px 0px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5.76px;
+  flex: 1 0 0;
+  color: #2D3648;
+}
+
+.svg-icon {
+  cursor: pointer;
+}
+
+.add-icon {
+  display: flex;
+  padding: 16.64px;
+  justify-content: center;
+  align-items: center;
+  gap: 8.32px;
+
+  border-radius: 230.88px;
+  background: var(--Light-Green, #009479);
+  
+  cursor: pointer;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
