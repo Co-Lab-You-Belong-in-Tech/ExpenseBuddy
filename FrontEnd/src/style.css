@@ -5,8 +5,6 @@
 }
 
 .main-container {
-  border: 1px solid #213547;
-
   margin: 0 auto;
   height: 92.1px;
   width: 390px;
@@ -14,6 +12,9 @@
 }
 
 .bottom-nav {
+  position: fixed;
+  bottom: 0;
+  width: 390px;
   display: flex;
   flex-direction: row;
 }
@@ -23,7 +24,7 @@
   height: 64px;
   padding: 11.44px 0px 9.84px 0px;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   gap: 5.76px;
   flex: 1 0 0;
