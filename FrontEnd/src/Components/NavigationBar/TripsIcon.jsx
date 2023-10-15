@@ -15,6 +15,7 @@ const TripsIcon = () => {
           </clipPath>
         </defs>
       </svg>
+      <span>Trips</span>
     </div>
   )
 }
