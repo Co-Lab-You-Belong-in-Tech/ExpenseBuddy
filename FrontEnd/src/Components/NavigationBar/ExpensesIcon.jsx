@@ -13,6 +13,7 @@ const ExpensesIcon = () => {
           </clipPath>
         </defs>
       </svg>
+      <span>Expenses</span>
     </div>
   )
 }

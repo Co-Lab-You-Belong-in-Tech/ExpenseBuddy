@@ -4,6 +4,11 @@
   font-weight: 400;
 }
 
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
 .main-container {
   margin: 0 auto;
   height: 92.1px;
@@ -58,5 +63,13 @@
   }
   button {
     background-color: #f9f9f9;
+  }
+}
+
+@media only screen and (min-width: 415px) { 
+  .main-container {
+    margin: 0 auto;
+    height: 100vh;
+    border: 1px solid gray;
   }
 }
