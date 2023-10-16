@@ -1,15 +1,15 @@
-import { NavigationBar } from './Components/NavigationBar/NavigationBar'
+import Greeting from './Components/Greeting/Greeting'
+import NavigationBar from './Components/NavigationBar/NavigationBar'
 import './style.css'
 
-function App() {
+export default function App() {
 
   return (
     <>
       <div className="main-container">
+        <Greeting />
         <NavigationBar />
       </div>
     </>
   )
 }
-
-export default App

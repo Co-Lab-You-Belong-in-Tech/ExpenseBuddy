@@ -16,7 +16,17 @@ html, body {
   min-width: 390px;
 }
 
+.greeting {
+  display: flex;
+  color: #fff;
+  background-color: #027BCE;
+  padding: 16px 20px;
+  justify-content: flex-start;
+  align-items: center;
+}
+
 .bottom-nav {
+  border-top: solid 1px ;
   position: fixed;
   bottom: 0;
   width: 390px;
@@ -34,11 +44,13 @@ html, body {
   gap: 5.76px;
   flex: 1 0 0;
   color: #2D3648;
+  
+  cursor: pointer;
+  font-size: 0.7rem;
+  text-decoration: none;
 }
 
-.svg-icon {
-  cursor: pointer;
-}
+.opaq { opacity: 0.5; }
 
 .add-icon {
   display: flex;
@@ -46,24 +58,10 @@ html, body {
   justify-content: center;
   align-items: center;
   gap: 8.32px;
-
   border-radius: 230.88px;
   background: var(--Light-Green, #009479);
-  
+  opacity: 1;
   cursor: pointer;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
 }
 
 @media only screen and (min-width: 415px) { 
@@ -71,5 +69,8 @@ html, body {
     margin: 0 auto;
     height: 100vh;
     border: 1px solid gray;
+  }
+    .nav-icon:hover {
+    opacity: 1;
   }
 }
