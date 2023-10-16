@@ -1,9 +1,4 @@
-import React from 'react'
-
-const TripsIcon = () => {
-  return (
-    <div className="nav-icon">
-      <svg className="svg-icon" xmlns="http://www.w3.org/2000/svg" width="25" height="26" viewBox="0 0 25 26" fill="none">
+<svg className="svg-icon" xmlns="http://www.w3.org/2000/svg" width="25" height="26" viewBox="0 0 25 26" fill="none">
         <rect width="67.86" height="64" transform="translate(0.32 0.315918)"/>
         <g clip-path="url(#clip0_695_994)">
           <path fill-rule="evenodd" clip-rule="evenodd" d="M12.5 6.83985C10.2025 6.83985 8.34001 8.70235 8.34001 10.9999C8.34001 13.2974 10.2025 15.1599 12.5 15.1599C14.7975 15.1599 16.66 13.2974 16.66 10.9999C16.66 8.70235 14.7975 6.83985 12.5 6.83985ZM10.42 10.9999C10.42 9.8511 11.3513 8.91985 12.5 8.91985C13.6488 8.91985 14.58 9.8511 14.58 10.9999C14.58 12.1486 13.6488 13.0799 12.5 13.0799C11.3513 13.0799 10.42 12.1486 10.42 10.9999Z" fill="#2D3648"/>
@@ -15,9 +10,3 @@ const TripsIcon = () => {
           </clipPath>
         </defs>
       </svg>
-      <span>Trips</span>
-    </div>
-  )
-}
-
-export default TripsIcon

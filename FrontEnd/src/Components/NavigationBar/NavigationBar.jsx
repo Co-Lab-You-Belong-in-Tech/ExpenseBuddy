@@ -1,18 +1,7 @@
-import React from "react";
-import AddIcon from "./AddIcon";
-import ReportsIcon from "./ReportsIcon";
-import ExpensesIcon from "./ExpensesIcon";
-import HomeIcon from "./HomeIcon";
-import TripsIcon from "./TripsIcon";
-
-export const NavigationBar = () => {
+export const NavigationBar = props => {
   return (
-    <div className="bottom-nav">
-        <HomeIcon />
-        <TripsIcon />
-        <AddIcon />
-        <ReportsIcon />
-        <ExpensesIcon />
-    </div>
-  );
-};
+    <nav className="bottom-nav">
+        <ul className="navbar-nav">{ props.children }</ul>
+    </nav>
+  )
+}
