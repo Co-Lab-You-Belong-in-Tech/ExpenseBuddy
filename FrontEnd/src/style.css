@@ -10,67 +10,6 @@ html, body {
 }
 
 .main-container {
-  margin: 0 auto;
-  height: 92.1px;
-  width: 390px;
-  min-width: 390px;
-}
-
-.greeting {
-  display: flex;
-  color: #fff;
-  background-color: #027BCE;
-  padding: 16px 20px;
-  justify-content: flex-start;
-  align-items: center;
-}
-
-.bottom-nav {
-  border-top: solid 1px ;
-  position: fixed;
-  bottom: 0;
-  width: 390px;
-  display: flex;
-  flex-direction: row;
-}
-
-.nav-icon {
-  display: flex;
-  height: 64px;
-  padding: 11.44px 0px 9.84px 0px;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 5.76px;
-  flex: 1 0 0;
-  color: #2D3648;
-  
-  cursor: pointer;
-  font-size: 0.7rem;
-  text-decoration: none;
-}
-
-.opaq { opacity: 0.5; }
-
-.add-icon {
-  display: flex;
-  padding: 16.64px;
-  justify-content: center;
-  align-items: center;
-  gap: 8.32px;
-  border-radius: 230.88px;
-  background: var(--Light-Green, #009479);
-  opacity: 1;
-  cursor: pointer;
-}
-
-@media only screen and (min-width: 415px) { 
-  .main-container {
-    margin: 0 auto;
-    height: 100vh;
-    border: 1px solid gray;
-  }
-    .nav-icon:hover {
-    opacity: 1;
-  }
+  max-height: 100%;
+  width: auto;
 }
