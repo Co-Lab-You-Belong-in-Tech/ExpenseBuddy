@@ -8,8 +8,6 @@ const Container = styled.div`
   justify-content: space-evenly;
   align-items: center;
   flex: 1;
-  color: #2D3648;
-  cursor: pointer;
   font-size: 0.7rem;
   text-decoration: none;
 `
