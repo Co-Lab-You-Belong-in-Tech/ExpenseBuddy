@@ -26,7 +26,7 @@ export default function AddIcon() {
   return (
       <Container >
         <Wrapper>
-          <AddIco />
+          <AddIco/>
         </Wrapper>
       </Container>
   )

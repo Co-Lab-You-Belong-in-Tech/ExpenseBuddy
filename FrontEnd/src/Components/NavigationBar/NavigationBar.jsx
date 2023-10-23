@@ -6,6 +6,9 @@ import HomeIcon from "./HomeIcon";
 import TripsIcon from "./TripsIcon";
 import styled from "styled-components";
 import { mobile } from "../../responsive";
+import Sheet from 'react-modal-sheet';
+import { useState } from 'react';
+import AddPopUp from "../../pages/AddPopUp";
 
 const Container = styled.div`
     width: auto;
@@ -22,8 +25,14 @@ const Wrapper = styled.div`
     align-items: center;
     justify-content: center;
 `
+const BottomSheetButton = styled.button`
+    border: none;
+    background-color: white;
+`
 
 export default function NavigationBar() {
+
+    const [isOpen, setOpen] = useState(false);
 
     return (
         <>
@@ -31,9 +40,27 @@ export default function NavigationBar() {
                 <Wrapper>
                 <HomeIcon />
                 <TripsIcon />
-                <AddIcon />
+                <BottomSheetButton onClick={() => setOpen(true)}><AddIcon /></BottomSheetButton>
+                
                 <ReportsIcon />
                 <ExpensesIcon />
+                
+
+                <Sheet 
+                isOpen={isOpen} 
+                onClose={() => setOpen(false)}
+                snapPoints={[600, 500, 300, 0]}
+                initialSnap={2}>
+                <Sheet.Container>
+                    <Sheet.Header />
+                    <Sheet.Content>
+                        {
+                        <AddPopUp />
+                        }
+                    </Sheet.Content>
+                </Sheet.Container>
+                <Sheet.Backdrop />
+                </Sheet>
                 </Wrapper>
             </Container>
         </>
