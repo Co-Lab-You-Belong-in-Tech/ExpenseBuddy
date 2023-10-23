@@ -50,7 +50,9 @@ export default function NavigationBar() {
                 isOpen={isOpen} 
                 onClose={() => setOpen(false)}
                 snapPoints={[600, 500, 300, 0]}
-                initialSnap={2}>
+                initialSnap={2}
+                detent="content-height"
+                >
                 <Sheet.Container>
                     <Sheet.Header />
                     <Sheet.Content>
