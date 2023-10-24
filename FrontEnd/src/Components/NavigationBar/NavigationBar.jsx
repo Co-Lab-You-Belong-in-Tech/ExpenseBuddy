@@ -24,7 +24,7 @@ const Wrapper = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
 `
 const BottomSheetButton = styled.button`
     border: none;
@@ -40,31 +40,33 @@ export default function NavigationBar() {
             <Container>
                 <Wrapper>
 
-                    <NavLink to='/'>
+                    <NavLink to='/' className="navlink">
                         <HomeIcon />
                     </NavLink>
 
-                    <NavLink to='/trips'>
+                    <NavLink to='/trips' className="navlink">
                         <TripsIcon />
                     </NavLink>
-                    
+
                     <BottomSheetButton onClick={() => setOpen(true)}><AddIcon /></BottomSheetButton>
                     
-                    <NavLink to='/reports'>
+                    <NavLink to='/reports' className="navlink">
                         <ReportsIcon />
                     </NavLink>
                     
-                    <NavLink to='/expenses'>
+                    <NavLink to='/expenses' className="navlink">
                         <ExpensesIcon />
                     </NavLink>
 
-                    <Sheet 
-                        isOpen={isOpen} 
-                        onClose={() => setOpen(false)}
-                        snapPoints={[600, 500, 300, 0]}
-                        initialSnap={2}
-                        detent="content-height"
-                    >
+                    
+                </Wrapper>
+                <Sheet 
+                    isOpen={isOpen} 
+                    onClose={() => setOpen(false)}
+                    snapPoints={[600, 500, 300, 0]}
+                    initialSnap={2}
+                    detent="content-height"
+                >
                     <Sheet.Container>
                         <Sheet.Header />
                         <Sheet.Content>
@@ -74,8 +76,7 @@ export default function NavigationBar() {
                         </Sheet.Content>
                     </Sheet.Container>
                     <Sheet.Backdrop />
-                    </Sheet>
-                </Wrapper>
+                </Sheet>
             </Container>
         </>
     )

@@ -13,3 +13,18 @@ html, body {
   max-height: 100%;
   width: auto;
 }
+
+a.navlink,
+a.navlink:visited {
+  display: block;
+  width: 4rem;
+  cursor: pointer;
+  height: 100%;
+  text-decoration: none;
+  /* border: 2px solid pink; */
+}
+
+a.navlink:active,
+a.navlink:hover {
+  color: #009479;
+}
