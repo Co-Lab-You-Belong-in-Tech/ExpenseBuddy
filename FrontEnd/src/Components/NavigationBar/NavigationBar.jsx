@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import AddIcon from "./AddIcon";
 import ReportsIcon from "./ReportsIcon";
 import ExpensesIcon from "./ExpensesIcon";
@@ -38,31 +39,42 @@ export default function NavigationBar() {
         <>
             <Container>
                 <Wrapper>
-                <HomeIcon />
-                <TripsIcon />
-                <BottomSheetButton onClick={() => setOpen(true)}><AddIcon /></BottomSheetButton>
-                
-                <ReportsIcon />
-                <ExpensesIcon />
-                
 
-                <Sheet 
-                isOpen={isOpen} 
-                onClose={() => setOpen(false)}
-                snapPoints={[600, 500, 300, 0]}
-                initialSnap={2}
-                detent="content-height"
-                >
-                <Sheet.Container>
-                    <Sheet.Header />
-                    <Sheet.Content>
-                        {
-                        <AddPopUp />
-                        }
-                    </Sheet.Content>
-                </Sheet.Container>
-                <Sheet.Backdrop />
-                </Sheet>
+                    <NavLink to='/'>
+                        <HomeIcon />
+                    </NavLink>
+
+                    <NavLink to='/trips'>
+                        <TripsIcon />
+                    </NavLink>
+                    
+                    <BottomSheetButton onClick={() => setOpen(true)}><AddIcon /></BottomSheetButton>
+                    
+                    <NavLink to='/reports'>
+                        <ReportsIcon />
+                    </NavLink>
+                    
+                    <NavLink to='/expenses'>
+                        <ExpensesIcon />
+                    </NavLink>
+
+                    <Sheet 
+                        isOpen={isOpen} 
+                        onClose={() => setOpen(false)}
+                        snapPoints={[600, 500, 300, 0]}
+                        initialSnap={2}
+                        detent="content-height"
+                    >
+                    <Sheet.Container>
+                        <Sheet.Header />
+                        <Sheet.Content>
+                            {
+                            <AddPopUp />
+                            }
+                        </Sheet.Content>
+                    </Sheet.Container>
+                    <Sheet.Backdrop />
+                    </Sheet>
                 </Wrapper>
             </Container>
         </>
