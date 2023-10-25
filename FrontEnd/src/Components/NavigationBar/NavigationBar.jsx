@@ -56,27 +56,26 @@ export default function NavigationBar() {
                     
                     <NavLink to='/expenses' className="navlink">
                         <ExpensesIcon />
-                    </NavLink>
-
-                    
-                </Wrapper>
-                <Sheet 
-                    isOpen={isOpen} 
-                    onClose={() => setOpen(false)}
-                    snapPoints={[600, 500, 300, 0]}
-                    initialSnap={2}
-                    detent="content-height"
-                >
+                    </NavLink>                
+                
+                    <Sheet 
+                        isOpen={isOpen} 
+                        onClose={() => setOpen(false)}
+                        // snapPoints={[600, 500, 300, 0]}
+                        // initialSnap={2}
+                        detent="content-height"
+                    >
                     <Sheet.Container>
-                        <Sheet.Header />
-                        <Sheet.Content>
-                            {
-                            <AddPopUp />
-                            }
-                        </Sheet.Content>
+                            <Sheet.Header />
+                            <Sheet.Content>
+                                {
+                                <AddPopUp />
+                                }
+                            </Sheet.Content>
                     </Sheet.Container>
                     <Sheet.Backdrop />
-                </Sheet>
+                    </Sheet>
+                </Wrapper>
             </Container>
         </>
     )

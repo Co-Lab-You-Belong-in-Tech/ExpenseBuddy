@@ -20,15 +20,25 @@ const TitleText = styled.span`
 
 `
 
-const OptionWrapper = styled.div`
+const TileWrapper = styled.div`
     display: flex;
-    justify-content: space-between;
-    padding-top: 5%;
-    padding-bottom: 5%;
+    justify-content: center;
+    padding-top: 2.5%;
+    padding-bottom: 2.5%;
     width: 100%;
 `
+const TileBackground = styled.div`
+    display: flex;
+    justify-content: center;
+    padding-top: 2.5%;
+    padding-bottom: 2.5%;
+    width: 100%;
+`
+const TileTitle = styled.span`
+    
 
-const Subtext = styled.span`
+`
+const TileText = styled.span`
     
 
 `
@@ -44,18 +54,10 @@ const AddPopUp = () => {
   return (
     <Container>
         <TitleWrapper>
-            <TitleText>Add</TitleText>
+            <TitleText>How do you prefer to track your mileage</TitleText>
         </TitleWrapper>
         <Horiz></Horiz>
-        <OptionWrapper>
-            <Subtext>Add Trip</Subtext>
-            <ChevronRightIco />
-        </OptionWrapper>
-        <Horiz></Horiz>
-        <OptionWrapper>
-            <Subtext>Add Expense</Subtext>
-            <ChevronRightIco />
-        </OptionWrapper>
+
 
     </Container>
   )
