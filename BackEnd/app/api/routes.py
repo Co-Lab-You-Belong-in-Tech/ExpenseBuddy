@@ -59,9 +59,13 @@ def update_expense(current_user_token, expense_id):
 # Delete end
 @api.route('/expense/<id>', methods = ['DELETE'])
 @token_required
-def delete_whiskey(current_user_token, expense_id):
+def delete_expense(current_user_token, expense_id):
     expense = Expense.query.get(expense_id)
     db.session.delete(expense)
     db.session.commit()
     response = expense_schema.dump(expense)
     return jsonify(response)
+
+# @api.route()
+# @token_required
+# def 
