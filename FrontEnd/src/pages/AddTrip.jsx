@@ -293,6 +293,8 @@ export default function AddTrip() {
         },
     ]
 
+    
+
     return (
         <Container>
             <AddTripContent>
