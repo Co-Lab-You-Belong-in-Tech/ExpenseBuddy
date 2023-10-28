@@ -25,6 +25,7 @@ export default function App() {
             <Route path='/expenses' element={ <AllExpenses /> } />
             <Route path='/reports' element={ <Reports /> } />
             <Route path='/settings' element={ <Settings /> } />
+            <Route path='*' element={ <Navigate to='/' /> } />
           </Routes>
           <NavigationBar />
         </div>
