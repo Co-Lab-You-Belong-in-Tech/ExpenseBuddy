@@ -36,6 +36,10 @@ class User(db.Model, UserMixin):
         self.token = self.set_token(24)
         self.g_auth_verify = g_auth_verify
 
+    def commit(self):
+        db.session.add(self)
+        db.session.commit()
+
     def set_token(self, length):
         return secrets.token_hex(length)
 
@@ -43,8 +47,10 @@ class User(db.Model, UserMixin):
         return str(uuid.uuid4())
     
     def set_password(self, password):
-        self.pw_hash = generate_password_hash(password)
-        return self.pw_hash
+        return generate_password_hash(password)
+    
+    def check_password(self, password_input):
+        return check_password_hash(self.password, password_input)
 
     def __repr__(self):
         return f'User {self.email} has been added to the database'
@@ -83,6 +89,10 @@ class Expense(db.Model):
         self.expense_loc_end_id = expense_loc_end_id
         self.expense_odom_start = expense_odom_start
         self.expense_odom_end = expense_odom_end
+
+    def commit(self):
+        db.session.add(self)
+        db.session.commit()
 
     def __repr__(self):
         return f'The following bottle has been added to your home bar: {self.brand}'
@@ -135,6 +145,10 @@ class Address(db.Model):
         self.address_state = address_state
         self.address_zip = address_zip
         self.address_name = address_name
+
+    def commit(self):
+        db.session.add(self)
+        db.session.commit()
 
     def __repr__(self):
         return f'The address has been added!'
