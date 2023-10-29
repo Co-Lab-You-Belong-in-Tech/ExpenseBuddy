@@ -55,16 +55,34 @@ class Expense(db.Model):
     expense_type = db.Column(db.String(150), nullable = False)
     expense_dollar_amt = db.Column(db.NUMERIC(10,2))
     expense_mileage = db.Column(db.NUMERIC(10,2))
+    expense_loc_start_id = db.Column(db.Integer)
+    expense_loc_end_id = db.Column(db.Integer)
+    expense_odom_start = db.Column(db.Integer)
+    expense_odom_end = db.Column(db.Integer)
 
     user_id = db.Column(db.Integer, db.ForeignKey('user.user_id'), nullable = False)
     user_token = db.Column(db.String, db.ForeignKey('user.token'), nullable = False)
 
-    def __init__(self, expense_date, expense_type, expense_dollar_amt, expense_mileage, expense_id = ''):
+    def __init__(
+            self, 
+            expense_date, 
+            expense_type, 
+            expense_dollar_amt, 
+            expense_mileage, 
+            expense_loc_start_id,
+            expense_loc_end_id,
+            expense_odom_start,
+            expense_odom_end,
+            expense_id = ''):
         self.expense_id = self.set_id()
         self.expense_date = expense_date
         self.expense_type = expense_type
         self.expense_dollar_amt = expense_dollar_amt
         self.expense_mileage = expense_mileage
+        self.expense_loc_start_id = expense_loc_start_id
+        self.expense_loc_end_id = expense_loc_end_id
+        self.expense_odom_start = expense_odom_start
+        self.expense_odom_end = expense_odom_end
 
     def __repr__(self):
         return f'The following bottle has been added to your home bar: {self.brand}'
@@ -74,31 +92,49 @@ class Expense(db.Model):
 
 class ExpenseSchema(ma.Schema):
     class Meta:
-        fields = ['expense_id','expense_date', 'expense_type', 'expense_dollar_amt' ,'expense_mileage']
+        fields = [
+            'expense_id',
+            'expense_date', 
+            'expense_type', 
+            'expense_dollar_amt',
+            'expense_mileage',
+            'expense_loc_start_id',
+            'expense_loc_end_id',
+            'expense_odom_start',
+            'expense_odom_end']
 
 expense_schema = ExpenseSchema()
 expenses_schema = ExpenseSchema(many=True)
 
 class Address(db.Model):
     address_id = db.Column(db.Integer, primary_key = True)
-    street_1 = db.Column(db.String(150), nullable = False)
-    street_2 = db.Column(db.String(150))
-    city = db.Column(db.String(150))
-    statecode = db.Column(db.String(2))
-    zipcode = db.Column(db.NUMERIC(5))
     address_name = db.Column(db.String(150))
+    address_street = db.Column(db.String(150), nullable = False)
+    address_street_2 = db.Column(db.String(150))
+    address_city = db.Column(db.String(150))
+    address_state = db.Column(db.String(2))
+    address_zip = db.Column(db.NUMERIC(5))
+    
 
     user_id = db.Column(db.Integer, db.ForeignKey('user.user_id'), nullable = False)
     user_token = db.Column(db.String, db.ForeignKey('user.token'), nullable = False)
 
-    def __init__(self, street_1, street_2, city, statecode, zipcode, address_name, address_id = ''):
+    def __init__(
+            self, 
+            address_name, 
+            address_street, 
+            address_street_2, 
+            address_city, 
+            address_state, 
+            address_zip, 
+            address_id = ''):
         self.address_id = self.set_id()
-        self.street_1 = street_1
-        self.street_2 = street_2
-        self.city = city
-        self.statecode = statecode
-        self.zipcode = zipcode
-        self.address_type = address_name
+        self.address_street = address_street
+        self.address_street_2 = address_street_2
+        self.address_city = address_city
+        self.address_state = address_state
+        self.address_zip = address_zip
+        self.address_name = address_name
 
     def __repr__(self):
         return f'The address has been added!'
@@ -108,7 +144,14 @@ class Address(db.Model):
     
 class AddressSchema(ma.Schema):
     class Meta:
-        fields = ['address_id','street_1', 'street_2', 'city' ,'statecode', 'zipcode', 'address_type']
+        fields = [
+            'address_id', 
+            'address_name', 
+            'address_street', 
+            'address_street_2', 
+            'address_city',
+            'address_state', 
+            'address_zip']
 
 address_schema = AddressSchema()
 addresses_schema = AddressSchema(many=True)

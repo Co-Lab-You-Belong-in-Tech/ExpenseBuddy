@@ -1,8 +1,24 @@
 from flask import Blueprint, request, jsonify, render_template
 from helpers import token_required
-from models import db, User, Expense, Address, expense_schema, expenses_schema
+from models import db, User, Expense, Address, expense_schema, expenses_schema, address_schema, addresses_schema
 
 api = Blueprint('api', __name__, url_prefix='/api')
+
+@api.route('/address', methods = ['POST'])
+def create_address(current_user_token):
+    user_id = request.json['user_id']
+    address_name = request.json['address_name']
+    address_street = request.json['address_street']
+    address_city = request.json['address_city']
+    address_state = request.json['address_state']
+    address_zip = request.json['address_zip']
+    address = Address(address_name, address_street, address_city, address_state, address_state, address_zip, user_id, user_token = current_user_token.token)
+
+    db.session.add(address)
+    db.session.commit()
+
+    response = address_schema.dump(address)
+    return jsonify(response)
 
 @api.route('/getdata')
 def getdata():
@@ -59,7 +75,7 @@ def update_expense(current_user_token, expense_id):
 # Delete end
 @api.route('/expense/<id>', methods = ['DELETE'])
 @token_required
-def delete_whiskey(current_user_token, expense_id):
+def delete_expense(current_user_token, expense_id):
     expense = Expense.query.get(expense_id)
     db.session.delete(expense)
     db.session.commit()

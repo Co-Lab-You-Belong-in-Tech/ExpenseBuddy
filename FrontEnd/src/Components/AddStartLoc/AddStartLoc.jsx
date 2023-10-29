@@ -39,7 +39,8 @@ const AddressCardComponent = ({ option, selected, onChange }) => {
 
 export default function AddStartLoc() {
 
-    const [ isSelected, setIsSelected ] = useState(0)
+    const [ isSelected, setIsSelected ] = useState(null)
+
     const addArray = [
         {
             address_id: 1,
