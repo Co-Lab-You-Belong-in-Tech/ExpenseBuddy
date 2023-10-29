@@ -1,5 +1,4 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
-import Greeting from './Components/Greeting/Greeting'
 import NavigationBar from './Components/NavigationBar/NavigationBar'
 import Dashboard from './pages/Dashboard'
 import AddTrip from './pages/AddTrip'
@@ -16,7 +15,6 @@ export default function App() {
     <>
       <BrowserRouter>
         <div className="main-container">
-          <Greeting />
           <Routes>
             <Route path='/' element={ <Dashboard /> } />
             <Route path='/trips/add' element={ <AddTrip /> } />

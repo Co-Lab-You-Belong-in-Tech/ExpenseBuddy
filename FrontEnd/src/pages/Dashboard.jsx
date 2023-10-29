@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import TopBar from "../Components/TopBar/TopBar"
 import { mobile } from '../responsive'
 
 const Container = styled.div`
@@ -16,9 +17,13 @@ const Wrapper = styled.div`
 
 const Dashboard = () => {
   return (
-    <Container>
-      Welcome
-    </Container>
+    <>
+      <TopBar headerTitle="Welcome, Emily" />
+      <Container>
+        Welcome
+      </Container>
+    </>
+
   )
 }
 
