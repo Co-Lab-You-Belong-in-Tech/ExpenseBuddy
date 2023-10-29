@@ -4,7 +4,16 @@ from models import db, User, Expense, Address, expense_schema, expenses_schema, 
 
 api = Blueprint('api', __name__, url_prefix='/api')
 
+@api.route('/addresses', methods=['GET'])
+@token_required
+def get_all_addresses_by_user(current_user_token):
+    chosen_user = current_user_token.token
+    addresses = Address.query.filter_by(user_token = chosen_user).all()
+    response = addresses_schema.dump(addresses)
+    return jsonify(response)
+
 @api.route('/address', methods = ['POST'])
+@token_required
 def create_address(current_user_token):
     user_id = request.json['user_id']
     address_name = request.json['address_name']
