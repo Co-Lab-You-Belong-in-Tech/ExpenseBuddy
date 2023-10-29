@@ -27,12 +27,11 @@ class User(db.Model, UserMixin):
     token = db.Column(db.String, default = '', unique = True )
     date_created = db.Column(db.DateTime, nullable = False, default = datetime.utcnow)
 
-    def __init__(self, email, first_name='', last_name='', password='', token='', g_auth_verify=False):
-        self.user_id = self.set_user_id()
+    def __init__(self, email, first_name='', last_name='', password='', g_auth_verify=False):
+        self.email = email
         self.first_name = first_name
         self.last_name = last_name
         self.password = self.set_password(password)
-        self.email = email
         self.token = self.set_token(24)
         self.g_auth_verify = g_auth_verify
 
@@ -42,9 +41,6 @@ class User(db.Model, UserMixin):
 
     def set_token(self, length):
         return secrets.token_hex(length)
-
-    def set_user_id(self):
-        return str(uuid.uuid4())
     
     def set_password(self, password):
         return generate_password_hash(password)
@@ -78,9 +74,7 @@ class Expense(db.Model):
             expense_loc_start_id,
             expense_loc_end_id,
             expense_odom_start,
-            expense_odom_end,
-            expense_id = ''):
-        self.expense_id = self.set_id()
+            expense_odom_end):
         self.expense_date = expense_date
         self.expense_type = expense_type
         self.expense_dollar_amt = expense_dollar_amt
@@ -136,9 +130,7 @@ class Address(db.Model):
             address_street_2, 
             address_city, 
             address_state, 
-            address_zip, 
-            address_id = ''):
-        self.address_id = self.set_id()
+            address_zip):
         self.address_street = address_street
         self.address_street_2 = address_street_2
         self.address_city = address_city
