@@ -1,8 +1,8 @@
-"""DB Init
+"""empty message
 
-Revision ID: 2ac4b9333d5a
+Revision ID: ace88f2499a1
 Revises: 
-Create Date: 2023-10-12 23:21:03.152833
+Create Date: 2023-10-29 16:55:12.596651
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '2ac4b9333d5a'
+revision = 'ace88f2499a1'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -32,12 +32,12 @@ def upgrade():
     )
     op.create_table('address',
     sa.Column('address_id', sa.Integer(), nullable=False),
-    sa.Column('street_1', sa.String(length=150), nullable=False),
-    sa.Column('street_2', sa.String(length=150), nullable=True),
-    sa.Column('city', sa.String(length=150), nullable=True),
-    sa.Column('statecode', sa.String(length=2), nullable=True),
-    sa.Column('zipcode', sa.NUMERIC(precision=5), nullable=True),
     sa.Column('address_name', sa.String(length=150), nullable=True),
+    sa.Column('address_street', sa.String(length=150), nullable=False),
+    sa.Column('address_street_2', sa.String(length=150), nullable=True),
+    sa.Column('address_city', sa.String(length=150), nullable=True),
+    sa.Column('address_state', sa.String(length=2), nullable=True),
+    sa.Column('address_zip', sa.NUMERIC(precision=5), nullable=True),
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('user_token', sa.String(), nullable=False),
     sa.ForeignKeyConstraint(['user_id'], ['user.user_id'], ),
@@ -50,6 +50,10 @@ def upgrade():
     sa.Column('expense_type', sa.String(length=150), nullable=False),
     sa.Column('expense_dollar_amt', sa.NUMERIC(precision=10, scale=2), nullable=True),
     sa.Column('expense_mileage', sa.NUMERIC(precision=10, scale=2), nullable=True),
+    sa.Column('expense_loc_start_id', sa.Integer(), nullable=True),
+    sa.Column('expense_loc_end_id', sa.Integer(), nullable=True),
+    sa.Column('expense_odom_start', sa.Integer(), nullable=True),
+    sa.Column('expense_odom_end', sa.Integer(), nullable=True),
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('user_token', sa.String(), nullable=False),
     sa.ForeignKeyConstraint(['user_id'], ['user.user_id'], ),
