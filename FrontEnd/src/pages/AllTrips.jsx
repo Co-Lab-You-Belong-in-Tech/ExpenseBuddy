@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import TopBar from '../Components/TopBar/TopBar'
 
 const Container = styled.div`
     width: auto;
@@ -12,8 +13,11 @@ const Container = styled.div`
 export default function AllTrips() {
 
   return (
-    <Container>
-        <h2>All Trips Page</h2>
-    </Container>
+    <>
+      <TopBar headerTitle="Emily's Trips" />
+      <Container>
+          <h2>All Trips Page</h2>
+      </Container>
+    </>
   )
 }
