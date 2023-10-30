@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: ace88f2499a1
+Revision ID: 6295a2fabafb
 Revises: 
-Create Date: 2023-10-29 16:55:12.596651
+Create Date: 2023-10-29 23:01:36.412061
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'ace88f2499a1'
+revision = '6295a2fabafb'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -39,9 +39,9 @@ def upgrade():
     sa.Column('address_state', sa.String(length=2), nullable=True),
     sa.Column('address_zip', sa.NUMERIC(precision=5), nullable=True),
     sa.Column('user_id', sa.Integer(), nullable=False),
-    sa.Column('user_token', sa.String(), nullable=False),
+    sa.Column('token', sa.String(), nullable=False),
+    sa.ForeignKeyConstraint(['token'], ['user.token'], ),
     sa.ForeignKeyConstraint(['user_id'], ['user.user_id'], ),
-    sa.ForeignKeyConstraint(['user_token'], ['user.token'], ),
     sa.PrimaryKeyConstraint('address_id')
     )
     op.create_table('expense',
@@ -55,9 +55,9 @@ def upgrade():
     sa.Column('expense_odom_start', sa.Integer(), nullable=True),
     sa.Column('expense_odom_end', sa.Integer(), nullable=True),
     sa.Column('user_id', sa.Integer(), nullable=False),
-    sa.Column('user_token', sa.String(), nullable=False),
+    sa.Column('token', sa.String(), nullable=False),
+    sa.ForeignKeyConstraint(['token'], ['user.token'], ),
     sa.ForeignKeyConstraint(['user_id'], ['user.user_id'], ),
-    sa.ForeignKeyConstraint(['user_token'], ['user.token'], ),
     sa.PrimaryKeyConstraint('expense_id')
     )
     # ### end Alembic commands ###

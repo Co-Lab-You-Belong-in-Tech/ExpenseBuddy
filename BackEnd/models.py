@@ -63,7 +63,7 @@ class Expense(db.Model):
     expense_odom_end = db.Column(db.Integer)
 
     user_id = db.Column(db.Integer, db.ForeignKey('user.user_id'), nullable = False)
-    user_token = db.Column(db.String, db.ForeignKey('user.token'), nullable = False)
+    token = db.Column(db.String, db.ForeignKey('user.token'), nullable = False)
 
     def __init__(
             self, 
@@ -90,9 +90,6 @@ class Expense(db.Model):
 
     def __repr__(self):
         return f'The following bottle has been added to your home bar: {self.brand}'
-
-    def set_id(self):
-        return (secrets.token_urlsafe())
 
 class ExpenseSchema(ma.Schema):
     class Meta:
@@ -121,7 +118,7 @@ class Address(db.Model):
     
 
     user_id = db.Column(db.Integer, db.ForeignKey('user.user_id'), nullable = False)
-    user_token = db.Column(db.String, db.ForeignKey('user.token'), nullable = False)
+    token = db.Column(db.String, db.ForeignKey('user.token'), nullable = False)
 
     def __init__(
             self, 
@@ -144,9 +141,6 @@ class Address(db.Model):
 
     def __repr__(self):
         return f'The address has been added!'
-
-    def set_id(self):
-        return (secrets.token_urlsafe())
     
 class AddressSchema(ma.Schema):
     class Meta:
