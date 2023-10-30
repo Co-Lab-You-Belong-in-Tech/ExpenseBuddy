@@ -26,6 +26,8 @@ class User(db.Model, UserMixin):
     g_auth_verify = db.Column(db.Boolean, default = False)
     token = db.Column(db.String, default = '', unique = True )
     date_created = db.Column(db.DateTime, nullable = False, default = datetime.utcnow)
+    user_expense = db.relationship('Expense',  backref='expense', lazy=True)
+    user_address = db.relationship('Address', backref='address', lazy=True)
 
     def __init__(self, email, first_name='', last_name='', password='', g_auth_verify=False):
         self.email = email
@@ -61,32 +63,7 @@ class Expense(db.Model):
     expense_loc_end_id = db.Column(db.Integer)
     expense_odom_start = db.Column(db.Integer)
     expense_odom_end = db.Column(db.Integer)
-
     user_id = db.Column(db.Integer, db.ForeignKey('user.user_id'), nullable = False)
-    token = db.Column(db.String, db.ForeignKey('user.token'), nullable = False)
-
-    def __init__(
-            self, 
-            expense_date, 
-            expense_type, 
-            expense_dollar_amt, 
-            expense_mileage, 
-            expense_loc_start_id,
-            expense_loc_end_id,
-            expense_odom_start,
-            expense_odom_end,
-            user_id,
-            token):
-        self.expense_date = expense_date
-        self.expense_type = expense_type
-        self.expense_dollar_amt = expense_dollar_amt
-        self.expense_mileage = expense_mileage
-        self.expense_loc_start_id = expense_loc_start_id
-        self.expense_loc_end_id = expense_loc_end_id
-        self.expense_odom_start = expense_odom_start
-        self.expense_odom_end = expense_odom_end
-        self.user_id = user_id
-        self.token = token
 
     def commit(self):
         db.session.add(self)
@@ -118,27 +95,8 @@ class Address(db.Model):
     address_city = db.Column(db.String(150))
     address_state = db.Column(db.String(2))
     address_zip = db.Column(db.Integer)
-    
     user_id = db.Column(db.Integer, db.ForeignKey('user.user_id'), nullable = False)
-    token = db.Column(db.String, db.ForeignKey('user.token'), nullable = False)
-
-    def __init__(
-            self, 
-            address_name, 
-            address_street, 
-            address_city, 
-            address_state, 
-            address_zip,
-            user_id,
-            token):
-        self.address_street = address_street
-        self.address_city = address_city
-        self.address_state = address_state
-        self.address_zip = address_zip
-        self.address_name = address_name
-        self.user_id = user_id
-        self.token = token
-
+        
     def commit(self):
         db.session.add(self)
         db.session.commit()
