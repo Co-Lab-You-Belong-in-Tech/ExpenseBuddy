@@ -21,11 +21,8 @@ def create_address(current_user_token):
     address_city = request.json['address_city']
     address_state = request.json['address_state']
     address_zip = request.json['address_zip']
-    address = Address(address_name, address_street, address_city, address_state, address_state, address_zip, user_id, user_token = current_user_token.token)
-
-    db.session.add(address)
-    db.session.commit()
-
+    address = Address(address_name, address_street, address_city, address_state, address_state, address_zip, user_id, token = current_user_token.token)
+    address.commit()
     response = address_schema.dump(address)
     return jsonify(response)
 
