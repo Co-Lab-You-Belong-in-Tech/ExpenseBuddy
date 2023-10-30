@@ -74,7 +74,9 @@ class Expense(db.Model):
             expense_loc_start_id,
             expense_loc_end_id,
             expense_odom_start,
-            expense_odom_end):
+            expense_odom_end,
+            user_id,
+            token):
         self.expense_date = expense_date
         self.expense_type = expense_type
         self.expense_dollar_amt = expense_dollar_amt
@@ -83,6 +85,8 @@ class Expense(db.Model):
         self.expense_loc_end_id = expense_loc_end_id
         self.expense_odom_start = expense_odom_start
         self.expense_odom_end = expense_odom_end
+        self.user_id = user_id
+        self.token = token
 
     def commit(self):
         db.session.add(self)
@@ -111,12 +115,10 @@ class Address(db.Model):
     address_id = db.Column(db.Integer, primary_key = True)
     address_name = db.Column(db.String(150))
     address_street = db.Column(db.String(150), nullable = False)
-    address_street_2 = db.Column(db.String(150))
     address_city = db.Column(db.String(150))
     address_state = db.Column(db.String(2))
-    address_zip = db.Column(db.NUMERIC(5))
+    address_zip = db.Column(db.Integer)
     
-
     user_id = db.Column(db.Integer, db.ForeignKey('user.user_id'), nullable = False)
     token = db.Column(db.String, db.ForeignKey('user.token'), nullable = False)
 
@@ -124,16 +126,18 @@ class Address(db.Model):
             self, 
             address_name, 
             address_street, 
-            address_street_2, 
             address_city, 
             address_state, 
-            address_zip):
+            address_zip,
+            user_id,
+            token):
         self.address_street = address_street
-        self.address_street_2 = address_street_2
         self.address_city = address_city
         self.address_state = address_state
         self.address_zip = address_zip
         self.address_name = address_name
+        self.user_id = user_id
+        self.token = token
 
     def commit(self):
         db.session.add(self)
@@ -148,7 +152,6 @@ class AddressSchema(ma.Schema):
             'address_id', 
             'address_name', 
             'address_street', 
-            'address_street_2', 
             'address_city',
             'address_state', 
             'address_zip']
