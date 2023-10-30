@@ -115,10 +115,9 @@ class Address(db.Model):
     address_id = db.Column(db.Integer, primary_key = True)
     address_name = db.Column(db.String(150))
     address_street = db.Column(db.String(150), nullable = False)
-    address_street_2 = db.Column(db.String(150))
     address_city = db.Column(db.String(150))
     address_state = db.Column(db.String(2))
-    address_zip = db.Column(db.NUMERIC(5))
+    address_zip = db.Column(db.Integer)
     
     user_id = db.Column(db.Integer, db.ForeignKey('user.user_id'), nullable = False)
     token = db.Column(db.String, db.ForeignKey('user.token'), nullable = False)
@@ -127,14 +126,12 @@ class Address(db.Model):
             self, 
             address_name, 
             address_street, 
-            address_street_2, 
             address_city, 
             address_state, 
             address_zip,
             user_id,
             token):
         self.address_street = address_street
-        self.address_street_2 = address_street_2
         self.address_city = address_city
         self.address_state = address_state
         self.address_zip = address_zip
@@ -155,7 +152,6 @@ class AddressSchema(ma.Schema):
             'address_id', 
             'address_name', 
             'address_street', 
-            'address_street_2', 
             'address_city',
             'address_state', 
             'address_zip']
