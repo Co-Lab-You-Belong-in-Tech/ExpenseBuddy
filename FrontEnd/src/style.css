@@ -28,3 +28,13 @@ a.navlink:active,
 a.navlink:hover {
   color: #009479;
 }
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  color: rgba(0, 0, 0, 0);
+  opacity: 1;
+  display: block;
+  background: url(./Icons/CalendarIco.svg) no-repeat;
+  width: 24px;
+  height: 24px;
+  border-width: thin;
+}
