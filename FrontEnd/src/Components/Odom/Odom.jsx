@@ -138,26 +138,88 @@ export const PurposeMenu = styled.select`
     padding: 10px 16px 10px 16px;
 
     /* Gian's Code */
-    width: 314px;
-    height: 20px;
+    width: 350px;
+    height: 45px;
+`
+
+export const NotesTextField = styled.textarea`
+    width: 318px;
+    padding: 14px 16px;
+    align-items: flex-start;
+    gap: 91px;
+    flex: 1 0 0;
+    border-radius: 6px;
+    border: 2px solid var(--Line-Gray, #E1E6EF);
+    background: #FFF;
+
+    /* Gian's Code */
+    font-family: Lexend;
+    display: block;
+    overflow: hidden;
+    resize: both;
+    min-height: 40px;
+    line-height: 20px;
+`
+
+export const ButtonContainer = styled.div`
+    display: flex;
+    padding: 0px 20px;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    align-self: stretch;
+`
+
+export const NextButton = styled.button`
+    display: flex;
+    height: 48px;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    align-self: stretch;
+    border-radius: 10px;
+    background: var(--Light-Green, #009479);
+
+    color: var(--White, #FFF);
+    text-align: center;
+    /* H4 Lexend Medium 16 px */
+    font-family: Lexend;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+`
+
+export const AlternateLink = styled.p`
+
+    color: var(--Light-Green, #009479);
+    text-align: center;
+    font-family: Lexend;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-decoration-line: underline;
 `
 
 export default function Odom() {
 
-    var curr = new Date()
-    curr.setDate(curr.getDate())
-    var date = curr.toISOString().substring(0,10)
+    let dt = new Date()
+    dt.setDate(dt.getDate())
+    let current_date = dt.toISOString().substring(0,10)
+    let current_time = dt.getHours() + ":" + dt.getMinutes()
 
     return (
         <>
             <OdomContainer>
                 <DetailsContainer>
                     <FormLabel htmlFor="txtDatePicker">Date *</FormLabel>
-                    <DateTextBox type="date" id="txtDatePicker" defaultValue={date}/>
+                    <DateTextBox type="date" id="txtDatePicker" defaultValue={current_date}/>
                 </DetailsContainer>
                 <DetailsContainer>
                     <FormLabel htmlFor="txtTime">Time *</FormLabel>
-                    <TimeTextBox id="txtTime" />
+                    <TimeTextBox type="time" id="txtTime" defaultValue={current_time} />
                 </DetailsContainer>
                 <OdomDetailsContainer>
                     <OdomForm>
@@ -172,10 +234,23 @@ export default function Odom() {
                 <DetailsContainer>
                     <FormLabel htmlFor="txtPurp">Purpose *</FormLabel>
                     <PurposeMenu id="txtPurp" placeholder="Select">
-                        <option selected>Select</option>
+                        <option>Business</option>
+                        <option>Medical</option>
+                        <option>Charity</option>
+                        <option>Moving</option>
+                        <option>Other</option>
                     </PurposeMenu>
                 </DetailsContainer>
+                <DetailsContainer>
+                    <FormLabel htmlFor="txtNotes">Notes</FormLabel>
+                    <NotesTextField id="txtNotes" placeholder="Write a note here (optional)" />
+                </DetailsContainer>
+                <ButtonContainer>
+                    <NextButton>Next</NextButton>
+                    <AlternateLink>Record location details instead</AlternateLink>
+                </ButtonContainer>
             </OdomContainer>
+            
         </>
     )
 }
