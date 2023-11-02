@@ -37,6 +37,7 @@ const Subtext = styled.div`
     padding: 0px 20px;
     align-items: center;
     gap: 10px;
+    
 `
 
 const SubtextMessage = styled.p`

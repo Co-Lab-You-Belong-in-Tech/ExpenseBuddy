@@ -6,7 +6,6 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     margin-left: 5%;
     margin-right: 5%;
 
@@ -14,22 +13,25 @@ const Container = styled.div`
 const TitleWrapper = styled.div`
     display: flex;
 `
-const TitleText = styled.span`
+const TitleText = styled.div`
     text-align: center;
     padding-bottom: 20px;
+    font-size: larger;
+    font-weight: 500;
 
 `
 
 const OptionWrapper = styled.div`
     display: flex;
     justify-content: space-between;
-    padding-top: 5%;
-    padding-bottom: 5%;
+    padding-top: 7.5%;
+    padding-bottom: 7.5%;
     width: 100%;
 `
 
-const Subtext = styled.span`
-    
+const Subtext = styled.div`
+    font-size: larger;
+    font-weight: 400;
 
 `
 
@@ -41,6 +43,7 @@ const Horiz = styled.div`
 
 
 const AddPopUp = () => {
+
   return (
     <Container>
         <TitleWrapper>

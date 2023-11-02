@@ -10,6 +10,7 @@ import { mobile } from "../../responsive";
 import Sheet from 'react-modal-sheet';
 import { useState } from 'react';
 import AddPopUp from "../../pages/AddPopUp";
+import AddTripPopUp from "../../pages/AddTripPopUp";
 
 const Container = styled.div`
     width: auto;
@@ -57,25 +58,24 @@ export default function NavigationBar() {
                     <NavLink to='/expenses' className="navlink">
                         <ExpensesIcon />
                     </NavLink>                
-                
+                    
                     <Sheet 
                         isOpen={isOpen} 
                         onClose={() => setOpen(false)}
-                        // snapPoints={[600, 500, 300, 0]}
-                        // initialSnap={2}
                         detent="content-height"
                     >
                     <Sheet.Container>
                             <Sheet.Header />
                             <Sheet.Content>
                                 {
-                                <AddPopUp />
+                                // <AddPopUp />
+                                <AddTripPopUp />
                                 }
                             </Sheet.Content>
                     </Sheet.Container>
                     <Sheet.Backdrop />
                     </Sheet>
-                </Wrapper>
+                    </Wrapper>
             </Container>
         </>
     )
