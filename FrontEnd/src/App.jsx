@@ -7,6 +7,7 @@ import AddExpense from './pages/AddExpense'
 import AllExpenses from './pages/AllExpenses'
 import Reports from './pages/Reports'
 import Settings from './pages/Settings'
+import AddOdom from "./pages/AddOdom"
 import './style.css'
 
 export default function App() {
@@ -18,6 +19,7 @@ export default function App() {
           <Routes>
             <Route path='/' element={ <Dashboard /> } />
             <Route path='/trips/add' element={ <AddTrip /> } />
+            <Route path='/trips/odom' element={ <AddOdom /> } />
             <Route path='/trips' element={ <AllTrips /> } />
             <Route path='/expenses/add' element={ <AddExpense /> } />
             <Route path='/expenses' element={ <AllExpenses /> } />
