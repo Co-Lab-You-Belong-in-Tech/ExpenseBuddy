@@ -1,8 +1,35 @@
 from flask import Blueprint, request, jsonify, render_template
 from helpers import token_required
-from models import db, User, Expense, Address, expense_schema, expenses_schema
+from models import db, User, Expense, Address, expense_schema, expenses_schema, address_schema, addresses_schema
 
 api = Blueprint('api', __name__, url_prefix='/api')
+
+@api.route('/addresses', methods=['GET'])
+@token_required
+def get_all_addresses_by_user(current_user_token):
+    chosenUser = User.query.filter_by(token = current_user_token.token).first()
+    if chosenUser:
+        response = addresses_schema.dump(chosenUser.user_address)
+        return jsonify(response)
+    return jsonify({
+        "message": "User does not exist.",
+        "success": False
+    })
+
+@api.route('/address', methods = ['POST'])
+@token_required
+def create_address(current_user_token):
+    content = request.json
+    address = Address(
+        address_name = content['address_name'],
+        address_street = content['address_street'],
+        address_city = content['address_city'],
+        address_state = content['address_state'],
+        address_zip = content['address_zip'],
+        user_id = content['user_id'])
+    address.commit()
+    response = address_schema.dump(address)
+    return jsonify(response)
 
 @api.route('/getdata')
 def getdata():
@@ -59,7 +86,7 @@ def update_expense(current_user_token, expense_id):
 # Delete end
 @api.route('/expense/<id>', methods = ['DELETE'])
 @token_required
-def delete_whiskey(current_user_token, expense_id):
+def delete_expense(current_user_token, expense_id):
     expense = Expense.query.get(expense_id)
     db.session.delete(expense)
     db.session.commit()

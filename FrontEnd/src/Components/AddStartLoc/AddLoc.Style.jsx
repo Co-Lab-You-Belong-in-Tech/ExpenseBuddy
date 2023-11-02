@@ -1,26 +1,7 @@
-import React from 'react'
 import styled from 'styled-components'
-import { mobile } from '../responsive'
+import SearchIco from "../../Icons/SearchIco.svg"
 
-import AddStartLoc from '../Components/AddStartLoc/AddStartLoc'
-import TopBar from '../Components/TopBar/TopBar'
-import useMultiStepForm from '../Hooks/useMultiStepForm'
-
-const Container = styled.div`
-    height: 75vh;
-    width: auto;
-    align-items: center;
-    justify-content: center;
-    background-color: azure;
-    padding: 16px 20px;
-
-    /* Gian's Code */
-    padding: 0px;
-    overflow: auto;
-`
-<<<<<<< HEAD
-
-const AddTripContent = styled.div`
+export const AddTripContent = styled.div`
     display: flex;
     width: 390px;
     height: 844px;
@@ -33,16 +14,15 @@ const AddTripContent = styled.div`
     height: auto;
 `
 
-const Subtext = styled.div`
+export const Subtext = styled.div`
     width: 350px;
     display: flex;
     padding: 0px 20px;
     align-items: center;
     gap: 10px;
-    
 `
 
-const SubtextMessage = styled.p`
+export const SubtextMessage = styled.p`
     color: #000;
     font-family: Lexend;
     font-size: 14px;
@@ -51,7 +31,7 @@ const SubtextMessage = styled.p`
     line-height: 28px; /* 200% */
 `
 
-const LocationContent = styled.div`
+export const LocationContent = styled.div`
     display: flex;
     padding: 0px 20px;
     flex-direction: column;
@@ -64,14 +44,14 @@ const LocationContent = styled.div`
     gap: 16px;
 `
 
-const StartLocationContainer = styled.div`
+export const StartLocationContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 4px;
 `
 
-const StartLocationLabel = styled.label`
+export const StartLocationLabel = styled.label`
     color: var(--wf-base-800, #2D3648);
     /* Form field label */
     font-family: Lexend;
@@ -81,7 +61,7 @@ const StartLocationLabel = styled.label`
     line-height: normal;
 `
 
-const StartLocationForm = styled.input`
+export const StartLocationForm = styled.input`
     font-family: Lexend;
     font-size: 16px;
     font-style: normal;
@@ -105,7 +85,7 @@ const StartLocationForm = styled.input`
     background-repeat: no-repeat;
 `
 
-const LocationTitle = styled.h2`
+export const LocationTitle = styled.h2`
     display: flex;
     align-items: center;
     gap: 10px;
@@ -117,7 +97,7 @@ const LocationTitle = styled.h2`
     line-height: normal;
 `
 
-const LocationEmptyContainer = styled.div`
+export const LocationEmptyContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -126,7 +106,7 @@ const LocationEmptyContainer = styled.div`
     align-self: stretch;
 `
 
-const SavedLocationEmptyMessage = styled.p`
+export const SavedLocationEmptyMessage = styled.p`
     align-self: stretch;
     color: #000;
     font-family: Lexend;
@@ -136,13 +116,13 @@ const SavedLocationEmptyMessage = styled.p`
     line-height: 24px; /* 171.429% */
 `
 
-const SavesLocationEmptyImage = styled.img`
+export const SavesLocationEmptyImage = styled.img`
     align-self: center;
     width: 262px;
     height: 211.651px;
 `
 
-const AddTripButtonContainer = styled.div`
+export const AddTripButtonContainer = styled.div`
     display: flex;
     padding: 0px 20px;
     flex-direction: column;
@@ -151,7 +131,7 @@ const AddTripButtonContainer = styled.div`
     align-self: stretch;
 `
 
-const NextButton = styled.button`
+export const NextButton = styled.button`
     display: flex;
     height: 48px;
     padding: 10px;
@@ -172,7 +152,7 @@ const NextButton = styled.button`
     line-height: normal;
 `
 
-const OdometerLink = styled.p`
+export const OdometerLink = styled.p`
 
     color: var(--Light-Green, #009479);
     text-align: center;
@@ -184,7 +164,7 @@ const OdometerLink = styled.p`
     text-decoration-line: underline;
 `
 
-const AddressCard = styled.div`
+export const AddressCard = styled.div`
     display: flex;
     padding: 8px 24px 8px 16px;
     justify-content: center;
@@ -202,7 +182,7 @@ const AddressCard = styled.div`
     border: ${props => (props.selected ? '2px solid #009479' : '2px solid #F3F6FF')};
 `
 
-const MapIcon = styled.img`
+export const MapIcon = styled.img`
     display: flex;
     width: 24px;
     height: 24px;
@@ -210,7 +190,7 @@ const MapIcon = styled.img`
     align-items: center;
 `
 
-const AddressContent = styled.div`
+export const AddressContent = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -219,7 +199,7 @@ const AddressContent = styled.div`
     align-self: stretch;
 `
 
-const AddressTitle = styled.h3`
+export const AddressTitle = styled.h3`
     align-self: stretch;
     color: #1D1B20;
 
@@ -234,7 +214,7 @@ const AddressTitle = styled.h3`
     margin: 10px 0 0;
 `
 
-const AddressSubtitle = styled.p`
+export const AddressSubtitle = styled.p`
     height: 20px;
     align-self: stretch;
     overflow: hidden;
@@ -252,32 +232,3 @@ const AddressSubtitle = styled.p`
     /* Gian's Code */
     margin: 0 0 10px;
 `
-
-const AddressCardComponent = ({ option, selected, onChange }) => {
-    return (
-        <AddressCard selected={selected} onClick={onChange}>
-            <MapIcon src={MapIco} />
-            <AddressContent>
-                <AddressTitle>{option.address_name}</AddressTitle>
-                <AddressSubtitle>{option.address_street} {option.address_city} {option.address_state} {option.address_zip}
-                </AddressSubtitle>
-            </AddressContent>
-        </AddressCard>
-    )
-}
-
-=======
->>>>>>> 95502d63333f91563896b6a5af56431900b01665
-export default function AddTrip() {
-
-    const { steps, currentStepIndex } = useMultiStepForm(<AddStartLoc />)
-
-    return (
-        <>
-            <TopBar headerTitle="Enter start location" back={true} exit={true} />
-            <Container>
-                { steps }
-            </Container>
-        </>
-    )
-}

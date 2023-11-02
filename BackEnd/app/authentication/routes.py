@@ -1,6 +1,6 @@
 from forms import UserLoginForm
 from models import User, db, check_password_hash
-from flask import Blueprint, render_template, request, redirect, url_for, flash
+from flask import Blueprint, render_template, request, redirect, url_for, flash, jsonify
 
 # imports for flask login 
 from flask_login import login_user, logout_user, LoginManager, current_user, login_required
@@ -42,7 +42,7 @@ def signin():
             logged_user = User.query.filter(User.email == email).first()
             if logged_user and check_password_hash(logged_user.password, password):
                 login_user(logged_user)
-                flash('You were successful in your initiation. Congratulations, and welcome to the Phonebook', 'auth-success')
+                flash('You were successful in your initiation. Congratulations abd welcome!', 'auth-success')
                 return redirect(url_for('site.profile'))
             else:
                 flash('You do not have access to this content.', 'auth-failed')
@@ -55,3 +55,53 @@ def signin():
 def logout():
     logout_user()
     return redirect(url_for('site.home'))
+
+# Register User
+@auth.route('/register', methods=["POST"])
+def register_user():
+    content = request.json
+    email = content['email']
+    password = content['password']
+    first_name = content['first_name']
+    last_name = content['last_name']
+    email_check = User.query.filter_by(email=email).first()
+    if email_check:
+        return jsonify([{
+            "message": "Email is already registered. Try again.",
+            "success": False
+        }])
+    user = User(email=email, first_name=first_name, last_name=last_name, password=password)
+    user.commit()
+    return jsonify([{
+        "message": f"{user.email} successfully registered!",
+        "success": True,
+        "first_name": user.first_name,
+        "token": user.token
+    }])
+
+# Verify User
+@auth.route('/verify', methods=["POST"])
+def verify_user():
+    content = request.json
+    email = content['email']
+    password = content['password']
+    user = User.query.filter_by(email=email).first()
+    if user and user.check_password(password):
+        return jsonify([{
+            "message": f"{user.email} successfully verified!",
+            "success": True,
+            "username": user.email,
+            "first_name": user.first_name,
+            "token": user.token
+        }])
+    elif user and not user.check_password(password):
+        return jsonify([{
+        "message": "Password incorrect.",
+        "error": "password",
+        "success": False
+    }])
+    return jsonify([{
+        "message": "User info not found.",
+        "error": "user",
+        "success": False
+    }])
