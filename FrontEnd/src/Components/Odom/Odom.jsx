@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import CalendarIco from "../../Icons/CalendarIco.svg"
 import TimeIco from "../../Icons/TimeIco.svg"
@@ -205,6 +205,28 @@ export const AlternateLink = styled.p`
 
 export default function Odom() {
 
+    const [ value, setValue ] = useState({ startOdom: "", endOdom: "" })
+    const [ difference, setDifference ] = useState(0)
+
+    const handleInput = function(e) {
+        setValue({
+            ...value, 
+            [e.target.name]: e.target.value
+        });
+    };
+
+    const calc = () => {
+        const { start, end } = value
+        if ((Number(end) > Number(start))) {
+            setDifference(Number(end) - Number(start))
+            console.log(difference)
+        }
+    }
+
+    useEffect(() => {
+        setDifference(Number(value.endOdom) - Number(value.startOdom))
+    }, [value])
+
     let dt = new Date()
     dt.setDate(dt.getDate())
     let current_date = dt.toISOString().substring(0,10)
@@ -224,11 +246,23 @@ export default function Odom() {
                 <OdomDetailsContainer>
                     <OdomForm>
                         <FormLabel htmlFor="txtStartOdom">Starting Odometer *</FormLabel>
-                        <OdomTextBox id="txtStartOdom" placeholder="e.g. 123456" />
+                        <OdomTextBox 
+                            id="txtStartOdom" 
+                            type="number"
+                            placeholder="e.g. 123456" 
+                            name="startOdom" 
+                            onChange={handleInput}
+                            value={value.startOdom} />
                     </OdomForm>
                     <OdomForm>
                         <FormLabel htmlFor="txtEndOdom">Ending Odometer *</FormLabel>
-                        <OdomTextBox id="txtEndOdom" placeholder="e.g. 123456" />
+                        <OdomTextBox 
+                            id="txtEndOdom" 
+                            type="number"
+                            placeholder="e.g. 123456"
+                            name="endOdom" 
+                            onChange={handleInput}
+                            value={value.endOdom} />
                     </OdomForm>
                 </OdomDetailsContainer>
                 <DetailsContainer>
