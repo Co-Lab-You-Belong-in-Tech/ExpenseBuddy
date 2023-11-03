@@ -14,10 +14,22 @@ const Container = styled.div`
     align-items: center;
 `
 const Wrapper = styled.div`
+    width: 100%;
     display: flex;
-    padding: 16px;
     align-items: center;
     justify-content: space-between;
+`
+const LeftContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 20px;
+`
+const RightContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-right: 20px;
 `
 
 export default function TopBar({ headerTitle, back=false, exit=false, setting=false }) {
@@ -27,10 +39,15 @@ export default function TopBar({ headerTitle, back=false, exit=false, setting=fa
   return (
     <Container>
       <Wrapper>
-        { back ? <BackIco onClick={handleClick} /> : '' }
-        <h3>{ headerTitle }</h3>
-        { exit ? <Link to="/"><ExitIco /></Link> : '' }
-        { setting ? <span>Settings</span> : '' }
+        <LeftContainer>
+          { back ? <BackIco onClick={handleClick} /> : '' }
+          <h3>{ headerTitle }</h3>
+        </LeftContainer>
+        
+        <RightContainer>
+          { exit ? <Link to="/"><ExitIco /></Link> : '' }
+          { setting ? <span>Settings</span> : '' }
+        </RightContainer>
       </Wrapper>
     </Container>
   )
