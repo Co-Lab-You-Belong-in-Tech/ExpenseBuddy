@@ -93,7 +93,23 @@ const NextButton = styled.button`
 `
 
 
-const AddPopUp = () => {
+const AddTripPopUp = () => {
+
+    const [selectedOption, setSelectedOption] = useState('location');
+    
+    const handleOptionChange = (event) => {
+        setSelectedOption(event.target.value);
+    };
+    
+    const getRedirectLink = () => {
+        if (selectedOption === 'location') {
+        return '/trips/add'
+        
+        
+        } else if (selectedOption === 'odometer') {
+        return '/trips/odom'
+        }
+    }
   return (
     <Container>
         <TitleWrapper>
@@ -110,7 +126,14 @@ const AddPopUp = () => {
                     <TileText><label for="location">Select this option to record location data for this trip</label></TileText>
                 </TileTextWrapper>
                 <TileIcon>
-                    <RadioOption type='radio' name='addvia' id="location" value="location" />
+                    <RadioOption 
+                        type='radio' 
+                        name='addvia' 
+                        id="location" 
+                        value="location" 
+                        checked={selectedOption === 'location'}
+                        onChange={handleOptionChange}
+                    />
                 </TileIcon>
             </TileBackground>
         </TileWrapper>
@@ -125,16 +148,23 @@ const AddPopUp = () => {
                     <TileText>Select this option to record odometer reading for this trip</TileText>
                 </TileTextWrapper>
                 <TileIcon>
-                    <RadioOption type='radio' name='addvia' id="odometer" value="odometer" />
+                    <RadioOption 
+                        type='radio' 
+                        name='addvia' 
+                        id="odometer" 
+                        value="odometer" 
+                        checked={selectedOption === 'odometer'}
+                        onChange={handleOptionChange} 
+                    />
                 </TileIcon>
             </TileBackground>
         </TileWrapper>
 
-        <NextButton name='addvia'>Next</NextButton>
+        <NextButton name='addvia' onClick={() =>  window.location.href = getRedirectLink()}>Next</NextButton>
 
 
     </Container>
   )
 }
 
-export default AddPopUp
+export default AddTripPopUp

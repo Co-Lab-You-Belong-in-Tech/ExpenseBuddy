@@ -8,6 +8,7 @@ import AllExpenses from './pages/AllExpenses'
 import Reports from './pages/Reports'
 import Settings from './pages/Settings'
 import AddOdom from "./pages/AddOdom"
+import ComingSoon from "./pages/ComingSoon"
 import './style.css'
 
 export default function App() {
@@ -25,7 +26,9 @@ export default function App() {
             <Route path='/expenses' element={ <AllExpenses /> } />
             <Route path='/reports' element={ <Reports /> } />
             <Route path='/settings' element={ <Settings /> } />
+            <Route path='/comingsoon' element={ <ComingSoon /> } />
             <Route path='*' element={ <Navigate to='/' /> } />
+            
           </Routes>
           <NavigationBar />
         </div>
