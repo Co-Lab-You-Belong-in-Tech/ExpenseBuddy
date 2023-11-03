@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import CalendarIco from "../../Icons/CalendarIco.svg"
 import TimeIco from "../../Icons/TimeIco.svg"
 import MeterIco from "../../Icons/MeterIco.svg"
+import InfoIco from "../../Icons/InfoIco.svg"
 
 export const OdomContainer = styled.div`
     display: flex;
@@ -121,6 +122,85 @@ export const OdomTextBox = styled.input`
     background-repeat: no-repeat;
 `
 
+export const CalcContainer = styled.div`
+    display: flex;
+    width: 350px;
+    justify-content: space-between;
+    align-items: center;
+`
+
+export const FigureContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+`
+
+export const FigureTitle = styled.span`
+    color: var(--Text, #2D3648);
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-family: Lexend;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 24px; /* 171.429% */
+`
+
+export const FigureValue = styled.span`
+    color: var(--Text, #2D3648);
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-family: Lexend;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px; /* 100% */
+`
+
+export const FigureFix = styled.span`
+    color: var(--Text, #2D3648);
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-family: Lexend;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 24px;
+`
+
+export const LineTemplate = styled.hr`
+    width: 167px;
+    height: 2px;
+    background: #E1E6EF;
+`
+
+export const InfoContainer = styled.div`
+    display: flex;
+    width: 330px;
+    height: 28px;
+    padding: 10px;
+    align-items: center;
+    gap: 10px;
+`
+
+export const InfoIcon = styled.div`
+    background-image: url(${ InfoIco });
+    display: flex;
+    width: 20px;
+    height: 20px;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+`
+
+export const InfoMessage = styled.a`
+    color: var(--Light-Green, #009479);
+    text-align: center;
+    font-family: Lexend;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-decoration-line: underline;
+`
+
 export const PurposeMenu = styled.select`
     font-family: Lexend;
     font-size: 16px;
@@ -215,16 +295,12 @@ export default function Odom() {
         });
     };
 
-    const calc = () => {
+    useEffect(() => {
         const { start, end } = value
-        if ((Number(end) > Number(start))) {
+        if ((parseInt(end) > parseInt(start))) {
             setDifference(Number(end) - Number(start))
             console.log(difference)
         }
-    }
-
-    useEffect(() => {
-        setDifference(Number(value.endOdom) - Number(value.startOdom))
     }, [value])
 
     let dt = new Date()
@@ -265,6 +341,21 @@ export default function Odom() {
                             value={value.endOdom} />
                     </OdomForm>
                 </OdomDetailsContainer>
+                <CalcContainer>
+                    <FigureContainer>
+                        <FigureTitle>Distance</FigureTitle>
+                        <FigureValue>13.0 <FigureFix>mi</FigureFix></FigureValue>
+                    </FigureContainer>
+                    <LineTemplate />
+                    <FigureContainer>
+                        <FigureTitle>Amount</FigureTitle>
+                        <FigureValue><FigureFix>$</FigureFix> 8.53</FigureValue>
+                    </FigureContainer>
+                </CalcContainer>
+                <InfoContainer>
+                    <InfoIcon />
+                    <InfoMessage>How is the amount calculated?</InfoMessage>
+                </InfoContainer>
                 <DetailsContainer>
                     <FormLabel htmlFor="txtPurp">Purpose *</FormLabel>
                     <PurposeMenu id="txtPurp" placeholder="Select">
