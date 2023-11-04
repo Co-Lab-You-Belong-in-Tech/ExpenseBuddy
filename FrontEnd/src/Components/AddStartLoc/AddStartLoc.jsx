@@ -71,31 +71,6 @@ export default function AddStartLoc() {
         })()
     }, [])
 
-    const addArray = [
-        {
-            address_id: 1,
-            address_name: "Home",
-            address_street: "4321 Home St.",
-            address_city: "San Diego",
-            address_state: "CA",
-            address_zip: 91111
-        },{
-            address_id: 2,
-            address_name: "Work",
-            address_street: "1234 Office St.",
-            address_city: "San Diego",
-            address_state: "CA",
-            address_zip: 91111
-        },{
-            address_id: 3,
-            address_name: "Client - Westfield UTC",
-            address_street: "1234 La Jolla Dr.",
-            address_city: "San Diego",
-            address_state: "CA",
-            address_zip: 91111
-        },
-    ]
-
     return (
         <>
             <AddTripContent>
@@ -138,7 +113,6 @@ export default function AddStartLoc() {
                                 )
                             )
                         }
-                        
                         {/* END */}
                 </LocationContent>
                 <AddTripButtonContainer>

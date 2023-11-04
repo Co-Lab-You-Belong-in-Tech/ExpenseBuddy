@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import ViewTripCard from '../ViewTripCard'
 
 const base_api_url = import.meta.env.VITE_APP_BASE_API
 const gian = import.meta.env.VITE_APP_GIAN
@@ -22,13 +23,15 @@ export default function TripsArray() {
                 throw new Error("Failed to fetch")
             }
             const data = await res.json()
+            const tripArr  = await data
             const arr = []
-            console.log(data)
-            for (let k of data) {
+            console.log(tripArr)
+            for (let k of tripArr) {
                 arr.push(k)
             }
             setTrips(arr)
             setLoading(false)
+            console.log(trips)
         })()
     }, [])
 
@@ -38,11 +41,10 @@ export default function TripsArray() {
             loading ? 
             (<p>Loading...</p>) :
             (trips.map((option, index) => (
-                console.log(option)
-                // <TripCardComponent
-                //     key={index}
-                //     option={option}
-                // />
+                <ViewTripCard
+                     key={index}
+                     option={option}
+                />
             )))
         }
     </>
