@@ -155,30 +155,26 @@ export default function ViewTripCard(option) {
                     <Date>{option.expense_date}</Date>
                     <Tag>{option.expense_type}</Tag>
                 </DateTagWrapper>
-
                 <Horiz />
-            
-            <CalcContainer>
-            <FigureContainer>
-                <FigureTitle>Distance</FigureTitle>
-                <FigureValue>{option.expense_mileage}<FigureFixMile>mi</FigureFixMile></FigureValue>
-            </FigureContainer>
-            <LineTemplate />
+                <CalcContainer>
                 <FigureContainer>
-                    <FigureTitle>Amount</FigureTitle>
-                    <FigureValue><FigureFix>$</FigureFix>{option.expense_dollar_amt}</FigureValue>
+                    <FigureTitle>Distance</FigureTitle>
+                    <FigureValue>{option.expense_mileage}<FigureFixMile>mi</FigureFixMile></FigureValue>
                 </FigureContainer>
-            </CalcContainer>
-
-        <Horiz />
-        <BlockWrapper>
-            <IconWrapper src={CarProfile} /><TripID>Trip ID # {option.expense_id}</TripID>
-        </BlockWrapper>
-        <BlockWrapper>
-            <IconWrapper src={NotesPic} /><Notes>{option.expense_notes}</Notes>
-        </BlockWrapper>
-        </Wrapper>
-
+                <LineTemplate />
+                    <FigureContainer>
+                        <FigureTitle>Amount</FigureTitle>
+                        <FigureValue><FigureFix>$</FigureFix>{option.expense_dollar_amt}</FigureValue>
+                    </FigureContainer>
+                </CalcContainer>
+                <Horiz />
+                <BlockWrapper>
+                    <IconWrapper src={CarProfile} /><TripID>Trip ID # {option.expense_id}</TripID>
+                </BlockWrapper>
+                <BlockWrapper>
+                    <IconWrapper src={NotesPic} /><Notes>{option.expense_notes}</Notes>
+                </BlockWrapper>
+            </Wrapper>
         </Container>
 
     )
