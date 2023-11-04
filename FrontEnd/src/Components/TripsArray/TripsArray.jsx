@@ -23,15 +23,9 @@ export default function TripsArray() {
                 throw new Error("Failed to fetch")
             }
             const data = await res.json()
-            const tripArr  = await data
-            const arr = []
-            console.log(tripArr)
-            for (let k of tripArr) {
-                arr.push(k)
-            }
-            setTrips(arr)
+            console.log(data)
+            setTrips(data)
             setLoading(false)
-            console.log(trips)
         })()
     }, [])
 
