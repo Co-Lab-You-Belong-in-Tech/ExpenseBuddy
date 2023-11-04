@@ -2,6 +2,7 @@ import React from 'react'
 import styled from "styled-components";
 import successimg from '../Images/successimg.png'
 import TopBar from '../Components/TopBar/TopBar';
+import { useNavigate } from 'react-router';
 
 const Container = styled.div`
     width: auto;
@@ -39,7 +40,7 @@ const TextDesc = styled.div`
   padding-top: 5px;
   
 `
-const ViewAllTrips = styled.button`
+const ViewAllTripsButton = styled.button`
   display: flex;
   color: #009479;
   border-width: 2px;
@@ -55,6 +56,12 @@ const ViewAllTrips = styled.button`
 `
 
 export default function TripSuccess() {
+  const navigate = useNavigate()
+
+  function nav() {
+    navigate("/trips")
+  }
+
   return (
     <>
     <TopBar exit="True" />
@@ -67,7 +74,7 @@ export default function TripSuccess() {
         <TextHeading>Success!</TextHeading>
         <TextDesc>Your trip has been logged.</TextDesc>
       </TextBlockWrapper>
-      <ViewAllTrips> View All Trips</ViewAllTrips>
+      <ViewAllTripsButton onClick={nav}>View All Trips</ViewAllTripsButton>
     </Container>
     </>
   )
