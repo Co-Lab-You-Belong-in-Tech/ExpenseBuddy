@@ -56,6 +56,7 @@ class User(db.Model, UserMixin):
 class Expense(db.Model):
     expense_id = db.Column(db.Integer, primary_key = True)
     expense_date = db.Column(db.DateTime, nullable = False, default = datetime.utcnow)
+    expense_time = db.Column(db.Time)
     expense_type = db.Column(db.String(150), nullable = False)
     expense_dollar_amt = db.Column(db.NUMERIC(10,2))
     expense_mileage = db.Column(db.NUMERIC(10,2))
@@ -63,6 +64,7 @@ class Expense(db.Model):
     expense_loc_end_id = db.Column(db.Integer)
     expense_odom_start = db.Column(db.Integer)
     expense_odom_end = db.Column(db.Integer)
+    expense_notes = db.Column(db.String(300), nullable=True, default='')
     user_id = db.Column(db.Integer, db.ForeignKey('user.user_id'), nullable = False)
 
     def commit(self):
@@ -77,13 +79,15 @@ class ExpenseSchema(ma.Schema):
         fields = [
             'expense_id',
             'expense_date', 
+            'expense_time,'
             'expense_type', 
             'expense_dollar_amt',
             'expense_mileage',
             'expense_loc_start_id',
             'expense_loc_end_id',
             'expense_odom_start',
-            'expense_odom_end']
+            'expense_notes'
+        ]
 
 expense_schema = ExpenseSchema()
 expenses_schema = ExpenseSchema(many=True)
