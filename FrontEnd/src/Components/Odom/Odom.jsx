@@ -286,26 +286,33 @@ export const AlternateLink = styled.p`
 
 export default function Odom() {
 
-    const [ startOdom, setStartOdom ] = useState('')
+    const [ value, setValue ] = useState({ startOdom: "", endOdom: ""})
     const [ endOdom, setEndOdom ] = useState('')
     const [ difference, setDifference ] = useState(0)
     const [ data, setData ] = useState()
 
     const { register, reset, handleSubmit } = useForm()
 
-    useEffect(() => {
-        if (parseInt(endOdom) > parseInt(startOdom)) {
-            setDifference(parseInt(endOdom) - parseInt(startOdom))
-            console.log(difference)
-        }
-    }, [startOdom, endOdom])
+    const handleInput = function(e) {
+        setValue({
+            ...value, 
+            [e.target.name]: e.target.value
+        })
+    }
+
+    // useEffect(() => {
+    //     if (parseInt(endOdom) > parseInt(startOdom)) {
+    //         setDifference(parseInt(endOdom) - parseInt(startOdom))
+    //         console.log(difference)
+    //     }
+    // }, [startOdom, endOdom])
 
     let dt = new Date()
     dt.setDate(dt.getDate())
     let current_date = dt.toISOString().substring(0,10)
     let current_time = dt.getHours() + ":" + dt.getMinutes()
 
-    let mileage = endOdom - startOdom
+    let mileage = value.endOdom - value.startOdom
 
     function showMiles() {
         if (mileage >= 0) {
@@ -354,9 +361,10 @@ export default function Odom() {
                             type="number"
                             placeholder="e.g. 123456" 
                             name="startOdom" 
-                            onChange={e => setStartOdom(e.target.value)}
-                            value={startOdom}
-                            {...register('ex_startOdom')} />
+                            onChange={handleInput}
+                            value={value.startOdom}
+                            // {...register('ex_startOdom')} 
+                        />
                     </OdomForm>
                     <OdomForm>
                         <FormLabel htmlFor="txtEndOdom">Ending Odometer *</FormLabel>
@@ -365,9 +373,10 @@ export default function Odom() {
                             type="number"
                             placeholder="e.g. 123456"
                             name="endOdom" 
-                            onChange={e => setEndOdom(e.target.value)}
-                            value={endOdom}
-                            {...register('ex_endOdom')} />
+                            onChange={handleInput}
+                            value={value.endOdom}
+                            // {...register('ex_endOdom')} 
+                        />
                     </OdomForm>
                 </OdomDetailsContainer>
                 <CalcContainer>
