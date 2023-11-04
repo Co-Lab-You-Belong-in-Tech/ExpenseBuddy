@@ -305,6 +305,28 @@ export default function Odom() {
     let current_date = dt.toISOString().substring(0,10)
     let current_time = dt.getHours() + ":" + dt.getMinutes()
 
+    let mileage = endOdom - startOdom
+
+    function showMiles() {
+        if (mileage >= 0) {
+            return mileage
+        }
+        else {
+        return 0
+        }
+    }
+
+    function reimbursement() {
+        let reimbursedamt = 0
+        if (mileage >= 0) {
+            reimbursedamt = (mileage * 0.655).toFixed(2)
+            return reimbursedamt
+        }
+        else {
+            return reimbursedamt
+        }
+    }
+
     return (
         <>
             <OdomContainer>
@@ -351,12 +373,12 @@ export default function Odom() {
                 <CalcContainer>
                     <FigureContainer>
                         <FigureTitle>Distance</FigureTitle>
-                        <FigureValue>{ difference } <FigureFix>mi</FigureFix></FigureValue>
+                        <FigureValue>{showMiles()} <FigureFix>mi</FigureFix></FigureValue>
                     </FigureContainer>
                     <LineTemplate />
                     <FigureContainer>
                         <FigureTitle>Amount</FigureTitle>
-                        <FigureValue><FigureFix>$</FigureFix> 8.53</FigureValue>
+                        <FigureValue><FigureFix>$</FigureFix> {reimbursement()}</FigureValue>
                     </FigureContainer>
                 </CalcContainer>
                 <InfoContainer>
@@ -370,10 +392,10 @@ export default function Odom() {
                         placeholder="Select"
                         {...register('ex_type')} >
                             <option value="business">Business</option>
-                            <option value="medical">Medical</option>
-                            <option value="charity">Charity</option>
-                            <option value="moving">Moving</option>
-                            <option value="other">Other</option>
+                            <option value="medical" disabled>Medical</option>
+                            <option value="charity" disabled>Charity</option>
+                            <option value="moving" disabled>Moving</option>
+                            <option value="other" disabled>Other</option>
                     </PurposeMenu>
                 </DetailsContainer>
                 <DetailsContainer>

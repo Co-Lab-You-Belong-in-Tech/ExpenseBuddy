@@ -1,5 +1,28 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+import dashboardpic from '../Images/dashboard.png'
+import TopBar from '../Components/TopBar/TopBar';
+
+const Container = styled.div`
+    width: auto;
+    height: 75vh;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    padding: 3%;
+`
+const ImgageCardWrapper = styled.div`
+  width: 96%;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+`
+const DashImage = styled.img`
+  width: 100%;
+`
 
 function ComingSoon() {
   const navigate = useNavigate();
@@ -17,10 +40,17 @@ function ComingSoon() {
   }, [navigate]);
 
   return (
-    <div>
-      <h1>Content Coming Soon</h1>
+    <>
+    <TopBar headerTitle="Coming Soon..." />
+    <Container>
+      
+      <ImgageCardWrapper>
+      <DashImage src={dashboardpic}/>
+      </ImgageCardWrapper>
+      <h3>We are working hard to bring you this content</h3>
       <p>Redirecting to the homepage in 5 seconds...</p>
-    </div>
+    </Container>
+    </>
   );
 }
 
