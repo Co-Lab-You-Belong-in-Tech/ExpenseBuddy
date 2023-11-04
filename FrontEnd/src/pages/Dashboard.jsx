@@ -14,6 +14,7 @@ const Container = styled.div`
     justify-content: center;
     background-color: white;
     padding: 3%;
+    overflow: auto;
 `
 const MonthYearWrapper = styled.div`
   padding: 10px;

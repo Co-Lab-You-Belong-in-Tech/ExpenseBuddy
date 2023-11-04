@@ -34,16 +34,19 @@ const RightContainer = styled.div`
 const HeaderText = styled.h3`
   padding-left: 10px;
 `
+const BackWrapper = styled.div`
+  
+` 
 
 export default function TopBar({ headerTitle, back=false, exit=false, setting=false }) {
   const navigate = useNavigate()
-  const handleClick = () => navigate(-1)
-
   return (
     <Container>
       <Wrapper>
         <LeftContainer>
-          { back ? <BackIco onClick={handleClick} /> : '' }
+          { back 
+          ? <BackWrapper onClick={() => navigate(-1)}><BackIco /></BackWrapper>
+          : '' }
           <HeaderText>{ headerTitle }</HeaderText>
         </LeftContainer>
         

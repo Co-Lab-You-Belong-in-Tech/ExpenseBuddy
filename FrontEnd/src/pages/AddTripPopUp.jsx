@@ -105,7 +105,6 @@ const AddTripPopUp = () => {
         if (selectedOption === 'location') {
         return '/trips/add'
         
-        
         } else if (selectedOption === 'odometer') {
         return '/trips/odom'
         }

@@ -11,6 +11,7 @@ const Container = styled.div`
     justify-content: center;
     background-color: white;
     padding: 3%;
+    overflow: auto;
 `
 const ImgageCardWrapper = styled.div`
   width: 96%;
