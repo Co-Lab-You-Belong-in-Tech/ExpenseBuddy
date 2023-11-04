@@ -308,6 +308,28 @@ export default function Odom() {
     let current_date = dt.toISOString().substring(0,10)
     let current_time = dt.getHours() + ":" + dt.getMinutes()
 
+    let mileage = value.endOdom - value.startOdom
+
+    function showMiles() {
+        if (mileage >= 0) {
+            return mileage
+        }
+        else {
+        return 0
+        }
+    }
+
+    function reimbursement() {
+        let reimbursedamt = 0
+        if (mileage >= 0) {
+            reimbursedamt = mileage * 0.655
+            return reimbursedamt
+        }
+        else {
+            return reimbursedamt
+        }
+    }
+
     return (
         <>
             <OdomContainer>
@@ -344,12 +366,12 @@ export default function Odom() {
                 <CalcContainer>
                     <FigureContainer>
                         <FigureTitle>Distance</FigureTitle>
-                        <FigureValue>13.0 <FigureFix>mi</FigureFix></FigureValue>
+                        <FigureValue>{showMiles()} <FigureFix>mi</FigureFix></FigureValue>
                     </FigureContainer>
                     <LineTemplate />
                     <FigureContainer>
                         <FigureTitle>Amount</FigureTitle>
-                        <FigureValue><FigureFix>$</FigureFix> 8.53</FigureValue>
+                        <FigureValue><FigureFix>$</FigureFix> {reimbursement()}</FigureValue>
                     </FigureContainer>
                 </CalcContainer>
                 <InfoContainer>
@@ -360,9 +382,9 @@ export default function Odom() {
                     <FormLabel htmlFor="txtPurp">Purpose *</FormLabel>
                     <PurposeMenu id="txtPurp" placeholder="Select">
                         <option>Business</option>
-                        <option>Medical</option>
-                        <option>Charity</option>
-                        <option>Moving</option>
+                        <option disabled>Medical</option>
+                        <option disabled>Charity</option>
+                        <option disabled>Moving</option>
                         <option>Other</option>
                     </PurposeMenu>
                 </DetailsContainer>
