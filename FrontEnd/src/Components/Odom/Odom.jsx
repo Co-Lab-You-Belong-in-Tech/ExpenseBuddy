@@ -286,7 +286,6 @@ export const AlternateLink = styled.p`
 export default function Odom() {
 
     const [ value, setValue ] = useState({ startOdom: "", endOdom: "" })
-    const [ difference, setDifference ] = useState(0)
 
     const handleInput = function(e) {
         setValue({
@@ -295,13 +294,6 @@ export default function Odom() {
         });
     };
 
-    useEffect(() => {
-        const { start, end } = value
-        if ((parseInt(end) > parseInt(start))) {
-            setDifference(Number(end) - Number(start))
-            console.log(difference)
-        }
-    }, [value])
 
     let dt = new Date()
     dt.setDate(dt.getDate())
