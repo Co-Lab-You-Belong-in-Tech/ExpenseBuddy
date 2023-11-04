@@ -86,6 +86,7 @@ class ExpenseSchema(ma.Schema):
             'expense_loc_start_id',
             'expense_loc_end_id',
             'expense_odom_start',
+            'expense_odom_end',
             'expense_notes'
         ]
 
