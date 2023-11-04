@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
+import { useNavigate } from "react-router-dom"
 import styled from 'styled-components'
 import CalendarIco from "../../Icons/CalendarIco.svg"
 import TimeIco from "../../Icons/TimeIco.svg"
 import MeterIco from "../../Icons/MeterIco.svg"
 import InfoIco from "../../Icons/InfoIco.svg"
 
-export const OdomContainer = styled.div`
+const base_api_url = import.meta.env.VITE_APP_BASE_API
+const gian = import.meta.env.VITE_APP_GIAN
+
+export const OdomFormContainer = styled.form`
     display: flex;
     width: 390px;
     height: 844px;
@@ -286,64 +290,72 @@ export const AlternateLink = styled.p`
 
 export default function Odom() {
 
-    const [ value, setValue ] = useState({ startOdom: "", endOdom: ""})
-    const [ endOdom, setEndOdom ] = useState('')
-    const [ difference, setDifference ] = useState(0)
-    const [ data, setData ] = useState()
-
-    const { register, reset, handleSubmit } = useForm()
-
-    const handleInput = function(e) {
-        setValue({
-            ...value, 
-            [e.target.name]: e.target.value
-        })
-    }
-
-    // useEffect(() => {
-    //     if (parseInt(endOdom) > parseInt(startOdom)) {
-    //         setDifference(parseInt(endOdom) - parseInt(startOdom))
-    //         console.log(difference)
-    //     }
-    // }, [startOdom, endOdom])
+    const { register, reset, watch, handleSubmit } = useForm()
+    const startOdom = watch('expense_odom_start', false)
+    const endOdom = watch('expense_odom_end', false)
+    const navigate = useNavigate()
 
     let dt = new Date()
     dt.setDate(dt.getDate())
     let current_date = dt.toISOString().substring(0,10)
     let current_time = dt.getHours() + ":" + dt.getMinutes()
 
-    let mileage = value.endOdom - value.startOdom
+    let mileage = endOdom - startOdom
 
     function showMiles() {
         if (mileage >= 0) {
             return mileage
         }
         else {
-        return 0
+            return 0
         }
     }
 
+    let reimbursedamt = (mileage * 0.655).toFixed(2)
+
     function reimbursement() {
-        let reimbursedamt = 0
         if (mileage >= 0) {
-            reimbursedamt = (mileage * 0.655).toFixed(2)
             return reimbursedamt
         }
         else {
-            return reimbursedamt
+            return 0.00
         }
+    }
+
+    async function handleSaveOdom(data) {
+        data.expense_mileage = parseInt(mileage)
+        data.expense_dollar_amt = parseInt(reimbursedamt)
+        data.user_id = 1
+        
+        const res = await fetch(`${base_api_url}/expense`, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                'x-access-token': `Bearer ${gian}`
+            },
+            body: JSON.stringify(data)
+        })
+        console.log(data)
+        if (!res.ok) {
+            throw new Error("Failed to fetch")
+        }
+        const dataRes = await res.json()
+        const saved = await dataRes
+        console.log(saved)
+        navigate('/success')
     }
 
     return (
         <>
-            <OdomContainer>
+            <OdomFormContainer onSubmit={handleSubmit(handleSaveOdom)}>
                 <DetailsContainer>
                     <FormLabel htmlFor="txtDatePicker">Date *</FormLabel>
                     <DateTextBox 
                         type="date" 
                         id="txtDatePicker" 
                         defaultValue={current_date}
-                        {...register('ex_date')} />
+                        required
+                        {...register('expense_date')} />
                 </DetailsContainer>
                 <DetailsContainer>
                     <FormLabel htmlFor="txtTime">Time *</FormLabel>
@@ -351,7 +363,8 @@ export default function Odom() {
                         type="time" 
                         id="txtTime" 
                         defaultValue={current_time}
-                        {...register('ex_time')} />
+                        required
+                        {...register('expense_time')} />
                 </DetailsContainer>
                 <OdomDetailsContainer>
                     <OdomForm>
@@ -361,9 +374,8 @@ export default function Odom() {
                             type="number"
                             placeholder="e.g. 123456" 
                             name="startOdom" 
-                            onChange={handleInput}
-                            value={value.startOdom}
-                            // {...register('ex_startOdom')} 
+                            required
+                            {...register('expense_odom_start')} 
                         />
                     </OdomForm>
                     <OdomForm>
@@ -373,9 +385,8 @@ export default function Odom() {
                             type="number"
                             placeholder="e.g. 123456"
                             name="endOdom" 
-                            onChange={handleInput}
-                            value={value.endOdom}
-                            // {...register('ex_endOdom')} 
+                            required
+                            {...register('expense_odom_end')} 
                         />
                     </OdomForm>
                 </OdomDetailsContainer>
@@ -399,7 +410,8 @@ export default function Odom() {
                     <PurposeMenu 
                         id="txtPurp" 
                         placeholder="Select"
-                        {...register('ex_type')} >
+                        {...register('expense_type')} 
+                        required >
                             <option value="business">Business</option>
                             <option value="medical" disabled>Medical</option>
                             <option value="charity" disabled>Charity</option>
@@ -412,13 +424,13 @@ export default function Odom() {
                     <NotesTextField 
                         id="txtNotes" 
                         placeholder="Write a note here (optional)" 
-                        {...register('ex_notes')} />
+                        {...register('expense_notes')} />
                 </DetailsContainer>
                 <ButtonContainer>
                     <NextButton>Next</NextButton>
                     <AlternateLink>Record location details instead</AlternateLink>
                 </ButtonContainer>
-            </OdomContainer>
+            </OdomFormContainer>
             
         </>
     )

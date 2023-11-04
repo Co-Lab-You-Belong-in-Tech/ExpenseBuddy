@@ -38,18 +38,19 @@ def getdata():
 @api.route('/expense', methods = ['POST'])
 @token_required
 def create_expense(current_user_token):
-    expense_type = request.json['expense_type']
-    expense_dollar_amt = request.json['expense_dollar_amt']
-    expense_mileage = request.json['expense_mileage']
-    user_token = current_user_token.token
-
-    print(f'BIG TESTER: {current_user_token.token}')
-
-    expense = Expense(expense_type, expense_dollar_amt, expense_mileage, user_token = user_token)
-
-    db.session.add(expense)
-    db.session.commit()
-
+    content = request.json
+    expense = Expense(
+        expense_date = content['expense_date'],
+        expense_time = content['expense_time'],
+        expense_type = content['expense_type'],
+        expense_dollar_amt = content['expense_dollar_amt'],
+        expense_mileage = content['expense_mileage'],
+        expense_odom_start = content['expense_odom_start'],
+        expense_odom_end = content['expense_odom_end'],
+        expense_notes = content['expense_notes'],
+        user_id = content['user_id']
+    )
+    expense.commit()
     response = expense_schema.dump(expense)
     return jsonify(response)
 
