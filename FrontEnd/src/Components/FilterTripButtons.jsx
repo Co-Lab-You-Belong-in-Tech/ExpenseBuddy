@@ -31,7 +31,10 @@ const Bubble = styled.div`
         border-color: #009479;
     }
 `
+const Wrapper = styled.a`
+    display: flex;
 
+`
 const IconImage = styled.img`
     padding-right: 3px;
     
@@ -52,7 +55,7 @@ const FilterableList = () => {
     <div>
       <Container>
         <Bubble onClick={() => setFilter('All Trips')}>
-            <IconImage src={CarProfile} />
+            <Wrapper><IconImage src={CarProfile} /></Wrapper>
             All Trips
         </Bubble>
 
@@ -63,7 +66,6 @@ const FilterableList = () => {
         </Bubble>
 
         <Bubble onClick={() => setFilter('Other')}>
-        <IconImage src={CarProfile} />
             Other
         </Bubble>
       </Container>
