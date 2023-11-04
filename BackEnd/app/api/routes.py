@@ -57,39 +57,19 @@ def create_expense(current_user_token):
 @api.route('/expense', methods = ['GET'])
 @token_required
 def get_expense(current_user_token):
-    a_user = current_user_token.token
-    expense = Expense.query.filter_by(user_token = a_user).all()
-    response = expenses_schema.dump(expense)
-    return jsonify(response)
+    chosenUser = User.query.filter_by(token = current_user_token.token).first()
+    if chosenUser:
+        response = expenses_schema.dump(chosenUser.user_expense)
+        return jsonify(response)
+    return jsonify({
+        "message": "User does not exist.",
+        "success": False
+    })
 
 #Optional 
 @api.route('/expense/<expense_id>', methods = ['GET'])
 @token_required
 def get_single_expense(current_user_token, expense_id):
     expense = Expense.query.get(expense_id)
-    response = expense_schema.dump(expense)
-    return jsonify(response)
-
-#Update endpoint
-@api.route('/expense/<id>', methods = ['POST','PUT'])
-@token_required
-def update_expense(current_user_token, expense_id):
-    expense = Expense.query.get(expense_id) 
-    expense.expense_type = request.json['expense_type']
-    expense.expense_dollar_amt = request.json['expense_dollar_amt']
-    expense.mileage = request.json['mileage']
-    expense.user_token = current_user_token.token
-
-    db.session.commit()
-    response = expense_schema.dump(expense)
-    return jsonify(response)
-
-# Delete end
-@api.route('/expense/<id>', methods = ['DELETE'])
-@token_required
-def delete_expense(current_user_token, expense_id):
-    expense = Expense.query.get(expense_id)
-    db.session.delete(expense)
-    db.session.commit()
     response = expense_schema.dump(expense)
     return jsonify(response)
