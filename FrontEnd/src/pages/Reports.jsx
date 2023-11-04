@@ -8,6 +8,7 @@ const Container = styled.div`
     justify-content: center;
     background-color: azure;
     padding: 16px 20px;
+    overflow: auto;
 `
 
 export default function Reports() {

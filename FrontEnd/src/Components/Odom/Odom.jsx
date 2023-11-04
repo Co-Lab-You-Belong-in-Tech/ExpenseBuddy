@@ -12,38 +12,39 @@ const gian = import.meta.env.VITE_APP_GIAN
 
 export const OdomFormContainer = styled.form`
     display: flex;
-    width: 390px;
-    height: 844px;
     flex-direction: column;
+    width: auto;
+    height: 90vh;
     align-items: center;
     gap: 24px;
-    background: #FFF;
+    background: white;
+    padding: 16px 20px 20px 16px;
 
-    /* Gian's Code */
-    padding-top: 20px;
-    height: auto;
 `
 
 export const DetailsContainer = styled.div`
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
     gap: 4px;
+    width: 100%;
+
 `
 
 export const FormLabel = styled.label`
     color: var(--wf-base-800, #2D3648);
     /* Form field label */
     font-family: Lexend;
-    font-size: 14px;
+    font-size: medium;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+
 `
 
 export const DateTextBox = styled.input`
     font-family: Lexend;
-    font-size: 16px;
+    font-size: large;
     font-style: normal;
     font-weight: 300;
     line-height: normal;
@@ -53,18 +54,13 @@ export const DateTextBox = styled.input`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 350px;
-    height: 48px;
     padding: 10px 16px 10px 16px;
 
-    /* Gian's Code */
-    width: 314px;
-    height: 20px;
 `
 
 export const TimeTextBox = styled.input`
     font-family: Lexend;
-    font-size: 16px;
+    font-size: large;
     font-style: normal;
     font-weight: 300;
     line-height: normal;
@@ -74,13 +70,9 @@ export const TimeTextBox = styled.input`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 350px;
-    height: 48px;
     padding: 10px 16px 10px 36px;
 
     /* Gian's Code */
-    width: 294px;
-    height: 20px;
     background-image: url(${ TimeIco });
     background-position: 14px 12px; 
     background-repeat: no-repeat;
@@ -89,18 +81,18 @@ export const TimeTextBox = styled.input`
 export const OdomDetailsContainer = styled.div`
     display: flex;
     flex-direction: row;
-    align-items: center;
     justify-content: space-between;
-    width: 90%;
+    width: 100%;
 `
 
 export const OdomForm = styled.div`
     display: flex;
-    width: 48%;
+    width: 100%;
     height: 70px;
     flex-direction: column;
     align-items: flex-start;
     gap: 4px;
+
 `
 
 export const OdomTextBox = styled.input`
@@ -113,23 +105,24 @@ export const OdomTextBox = styled.input`
     border: 2px solid var(--Line-Gray, #E1E6EF);
     background: #FFF;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    width: 350px;
     height: 48px;
     padding: 10px 16px 10px 36px;
-
+    width: 60%;
+        
     /* Gian's Code */
-    width: 111px;
-    height: 20px;
+
     background-image: url(${ MeterIco });
     background-position: 14px 12px; 
     background-repeat: no-repeat;
+    
 `
+
 
 export const CalcContainer = styled.div`
     display: flex;
-    width: 350px;
+    width: 95%;
     justify-content: space-between;
     align-items: center;
 `
@@ -138,6 +131,7 @@ export const FigureContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+
 `
 
 export const FigureTitle = styled.span`
@@ -148,6 +142,7 @@ export const FigureTitle = styled.span`
     font-style: normal;
     font-weight: 300;
     line-height: 24px; /* 171.429% */
+
 `
 
 export const FigureValue = styled.span`
@@ -171,18 +166,20 @@ export const FigureFix = styled.span`
 `
 
 export const LineTemplate = styled.hr`
-    width: 167px;
+    width: 50%;
     height: 2px;
     background: #E1E6EF;
 `
 
 export const InfoContainer = styled.div`
     display: flex;
-    width: 330px;
+    width: 100%;
     height: 28px;
     padding: 10px;
     align-items: center;
+    justify-content: center;
     gap: 10px;
+
 `
 
 export const InfoIcon = styled.div`
@@ -193,6 +190,7 @@ export const InfoIcon = styled.div`
     justify-content: center;
     align-items: center;
     flex-shrink: 0;
+
 `
 
 export const InfoMessage = styled.a`
@@ -204,6 +202,7 @@ export const InfoMessage = styled.a`
     font-weight: 400;
     line-height: normal;
     text-decoration-line: underline;
+
 `
 
 export const PurposeMenu = styled.select`
@@ -218,41 +217,37 @@ export const PurposeMenu = styled.select`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 350px;
+    width: 100%;
     height: 48px;
     padding: 10px 16px 10px 16px;
 
-    /* Gian's Code */
-    width: 350px;
-    height: 45px;
 `
 
 export const NotesTextField = styled.textarea`
-    width: 318px;
+    display: flex;
+    flex-direction: column;
     padding: 14px 16px;
-    align-items: flex-start;
+    align-items: stretch;
     gap: 91px;
-    flex: 1 0 0;
     border-radius: 6px;
     border: 2px solid var(--Line-Gray, #E1E6EF);
     background: #FFF;
 
     /* Gian's Code */
     font-family: Lexend;
-    display: block;
-    overflow: hidden;
     resize: both;
     min-height: 40px;
     line-height: 20px;
+
 `
 
 export const ButtonContainer = styled.div`
     display: flex;
-    padding: 0px 20px;
     flex-direction: column;
     align-items: center;
     gap: 24px;
     align-self: stretch;
+
 `
 
 export const NextButton = styled.button`
@@ -264,6 +259,7 @@ export const NextButton = styled.button`
     gap: 10px;
     align-self: stretch;
     border-radius: 10px;
+    border: none;
     background: var(--Light-Green, #009479);
 
     color: var(--White, #FFF);
@@ -286,6 +282,7 @@ export const AlternateLink = styled.p`
     font-weight: 400;
     line-height: normal;
     text-decoration-line: underline;
+
 `
 
 export default function Odom() {

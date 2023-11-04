@@ -10,7 +10,7 @@ const Container = styled.div`
     align-items: center;
     justify-content: center;
     background-color: white;
-    padding: 3%;
+    padding: 16px 20px;
 `
 const ImageWrapper = styled.div`
   display: flex;
