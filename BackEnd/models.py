@@ -79,7 +79,7 @@ class ExpenseSchema(ma.Schema):
         fields = [
             'expense_id',
             'expense_date', 
-            'expense_time,'
+            'expense_time',
             'expense_type', 
             'expense_dollar_amt',
             'expense_mileage',

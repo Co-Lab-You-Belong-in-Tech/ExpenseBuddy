@@ -3,7 +3,7 @@ import CarProfile from '../Icons/CarProfile.svg'
 import NotesPic from '../Icons/Notepad.svg'
 
 const Container = styled.div`
-    
+    margin-top: 20px;
 `
 const Wrapper = styled.div`
     display: flex;
@@ -147,15 +147,13 @@ const Notes = styled.span`
     
 `
 
-
-
-const ViewTripCard = () => {
+export default function ViewTripCard(option) {
     return(
         <Container>
             <Wrapper>
                 <DateTagWrapper>
-                    <Date>expense_date</Date>
-                    <Tag>expense_type</Tag>
+                    <Date>{option.expense_date}</Date>
+                    <Tag>{option.expense_type}</Tag>
                 </DateTagWrapper>
 
                 <Horiz />
@@ -163,21 +161,21 @@ const ViewTripCard = () => {
             <CalcContainer>
             <FigureContainer>
                 <FigureTitle>Distance</FigureTitle>
-                <FigureValue>12<FigureFixMile>mi</FigureFixMile></FigureValue>
+                <FigureValue>{option.expense_mileage}<FigureFixMile>mi</FigureFixMile></FigureValue>
             </FigureContainer>
             <LineTemplate />
                 <FigureContainer>
                     <FigureTitle>Amount</FigureTitle>
-                    <FigureValue><FigureFix>$</FigureFix>3</FigureValue>
+                    <FigureValue><FigureFix>$</FigureFix>{option.expense_dollar_amt}</FigureValue>
                 </FigureContainer>
             </CalcContainer>
 
         <Horiz />
         <BlockWrapper>
-            <IconWrapper src={CarProfile} /><TripID>Trip ID #</TripID>
+            <IconWrapper src={CarProfile} /><TripID>Trip ID # {option.expense_id}</TripID>
         </BlockWrapper>
         <BlockWrapper>
-            <IconWrapper src={NotesPic} /><Notes>Notes go here</Notes>
+            <IconWrapper src={NotesPic} /><Notes>{option.expense_notes}</Notes>
         </BlockWrapper>
         </Wrapper>
 
@@ -185,5 +183,3 @@ const ViewTripCard = () => {
 
     )
 }
-
-export default ViewTripCard
