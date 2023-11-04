@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import TopBar from '../Components/TopBar/TopBar'
 import MonthYearPicker from '../Components/MonthYearPicker'
 import FilterableList from '../Components/FilterTripButtons'
+import TripsArray from '../Components/TripsArray/TripsArray'
 
 const Container = styled.div`
     width: auto;
@@ -25,7 +26,7 @@ export default function ViewAllTrips() {
           <MonthYearPicker />
         </MonthYearWrapper>
         <FilterableList />
-
+        <TripsArray />
     </Container>
     </>
   )
