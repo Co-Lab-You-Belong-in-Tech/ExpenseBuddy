@@ -16,6 +16,7 @@ export default function Reports() {
       <TopBar headerTitle="Emily's Reports" />
       <Container>
           <h2>Reports Page</h2>
+          <h3>Coming soon!</h3>
       </Container>
     </>
   )

@@ -16,6 +16,7 @@ export default function AllExpenses() {
       <TopBar headerTitle="Emily's Expenses" />
       <Container>
           <h2>All Expenses Page</h2>
+          <h3>This content will be coming soon.</h3>
       </Container>
     </>
   )
