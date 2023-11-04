@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { useForm } from 'react-hook-form'
 import styled from 'styled-components'
 import CalendarIco from "../../Icons/CalendarIco.svg"
 import TimeIco from "../../Icons/TimeIco.svg"
@@ -285,15 +286,26 @@ export const AlternateLink = styled.p`
 
 export default function Odom() {
 
-    const [ value, setValue ] = useState({ startOdom: "", endOdom: "" })
+    const [ value, setValue ] = useState({ startOdom: "", endOdom: ""})
+    const [ endOdom, setEndOdom ] = useState('')
+    const [ difference, setDifference ] = useState(0)
+    const [ data, setData ] = useState()
+
+    const { register, reset, handleSubmit } = useForm()
 
     const handleInput = function(e) {
         setValue({
             ...value, 
             [e.target.name]: e.target.value
-        });
-    };
+        })
+    }
 
+    // useEffect(() => {
+    //     if (parseInt(endOdom) > parseInt(startOdom)) {
+    //         setDifference(parseInt(endOdom) - parseInt(startOdom))
+    //         console.log(difference)
+    //     }
+    // }, [startOdom, endOdom])
 
     let dt = new Date()
     dt.setDate(dt.getDate())
@@ -327,11 +339,19 @@ export default function Odom() {
             <OdomContainer>
                 <DetailsContainer>
                     <FormLabel htmlFor="txtDatePicker">Date *</FormLabel>
-                    <DateTextBox type="date" id="txtDatePicker" defaultValue={current_date}/>
+                    <DateTextBox 
+                        type="date" 
+                        id="txtDatePicker" 
+                        defaultValue={current_date}
+                        {...register('ex_date')} />
                 </DetailsContainer>
                 <DetailsContainer>
                     <FormLabel htmlFor="txtTime">Time *</FormLabel>
-                    <TimeTextBox type="time" id="txtTime" defaultValue={current_time} />
+                    <TimeTextBox 
+                        type="time" 
+                        id="txtTime" 
+                        defaultValue={current_time}
+                        {...register('ex_time')} />
                 </DetailsContainer>
                 <OdomDetailsContainer>
                     <OdomForm>
@@ -342,7 +362,9 @@ export default function Odom() {
                             placeholder="e.g. 123456" 
                             name="startOdom" 
                             onChange={handleInput}
-                            value={value.startOdom} />
+                            value={value.startOdom}
+                            // {...register('ex_startOdom')} 
+                        />
                     </OdomForm>
                     <OdomForm>
                         <FormLabel htmlFor="txtEndOdom">Ending Odometer *</FormLabel>
@@ -352,7 +374,9 @@ export default function Odom() {
                             placeholder="e.g. 123456"
                             name="endOdom" 
                             onChange={handleInput}
-                            value={value.endOdom} />
+                            value={value.endOdom}
+                            // {...register('ex_endOdom')} 
+                        />
                     </OdomForm>
                 </OdomDetailsContainer>
                 <CalcContainer>
@@ -372,17 +396,23 @@ export default function Odom() {
                 </InfoContainer>
                 <DetailsContainer>
                     <FormLabel htmlFor="txtPurp">Purpose *</FormLabel>
-                    <PurposeMenu id="txtPurp" placeholder="Select">
-                        <option>Business</option>
-                        <option disabled>Medical</option>
-                        <option disabled>Charity</option>
-                        <option disabled>Moving</option>
-                        <option disabled>Other</option>
+                    <PurposeMenu 
+                        id="txtPurp" 
+                        placeholder="Select"
+                        {...register('ex_type')} >
+                            <option value="business">Business</option>
+                            <option value="medical" disabled>Medical</option>
+                            <option value="charity" disabled>Charity</option>
+                            <option value="moving" disabled>Moving</option>
+                            <option value="other" disabled>Other</option>
                     </PurposeMenu>
                 </DetailsContainer>
                 <DetailsContainer>
                     <FormLabel htmlFor="txtNotes">Notes</FormLabel>
-                    <NotesTextField id="txtNotes" placeholder="Write a note here (optional)" />
+                    <NotesTextField 
+                        id="txtNotes" 
+                        placeholder="Write a note here (optional)" 
+                        {...register('ex_notes')} />
                 </DetailsContainer>
                 <ButtonContainer>
                     <NextButton>Next</NextButton>
