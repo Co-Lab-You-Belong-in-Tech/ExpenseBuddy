@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import useMultiStepForm from '../Hooks/useMultiStepForm'
 import TopBar from '../Components/TopBar/TopBar'
 import Odom from '../Components/Odom/Odom'
 
@@ -19,13 +18,11 @@ const Container = styled.div`
 
 export default function AddOdom() {
 
-    const { steps, currentStepIndex } = useMultiStepForm(<Odom />)
-
   return (
     <>
         <TopBar headerTitle="Trip Details" back={true} exit={true} />
         <Container>
-            { steps }
+            <Odom />
         </Container>
     </>
   )
