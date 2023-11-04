@@ -322,7 +322,7 @@ export default function Odom() {
     function reimbursement() {
         let reimbursedamt = 0
         if (mileage >= 0) {
-            reimbursedamt = mileage * 0.655
+            reimbursedamt = (mileage * 0.655).toFixed(2)
             return reimbursedamt
         }
         else {
@@ -385,7 +385,7 @@ export default function Odom() {
                         <option disabled>Medical</option>
                         <option disabled>Charity</option>
                         <option disabled>Moving</option>
-                        <option>Other</option>
+                        <option disabled>Other</option>
                     </PurposeMenu>
                 </DetailsContainer>
                 <DetailsContainer>
