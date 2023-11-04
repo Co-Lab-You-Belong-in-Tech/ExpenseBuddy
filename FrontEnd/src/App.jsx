@@ -9,6 +9,7 @@ import Reports from './pages/Reports'
 import Settings from './pages/Settings'
 import AddOdom from "./pages/AddOdom"
 import ComingSoon from "./pages/ComingSoon"
+import TripSuccess from "./pages/TripSuccess"
 import './style.css'
 
 export default function App() {
@@ -27,6 +28,7 @@ export default function App() {
             <Route path='/reports' element={ <Reports /> } />
             <Route path='/settings' element={ <Settings /> } />
             <Route path='/comingsoon' element={ <ComingSoon /> } />
+            <Route path='/success' element={ <TripSuccess /> } />
             <Route path='*' element={ <Navigate to='/' /> } />
             
           </Routes>
