@@ -14,9 +14,6 @@ const Container = styled.div`
     background-color: white;
     padding: 16px 20px;
     overflow: auto;
-
-    max-width: 700px;
-    margin: 0 auto;
 `
 const MonthYearWrapper = styled.div`
   padding: 10px;
