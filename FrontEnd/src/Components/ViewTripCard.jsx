@@ -42,7 +42,7 @@ const Tag = styled.div`
 `
 export const CalcContainer = styled.div`
     display: flex;
-    width: 350px;
+    width: auto;
     justify-content: space-between;
     align-items: center;
     padding-left: 10px;
@@ -111,18 +111,16 @@ export const LineTemplate = styled.hr`
     width: 50%;
     border: solid;
     color: #E1E6EF;
-    border-width: 2px;
+    border-width: 1px;
     justify-content: center;
     align-items: center;
 `
 
 const Horiz = styled.hr`
+    display: relative;
     color: #E1E6EF;
-    border: solid;
-    width: 103%;
-    display: flex;
-    border-width: 1px;
-
+    border: 1px solid;
+    width: calc(100% + .5rem)
 `
 const BlockWrapper = styled.div`
     display: flex;
@@ -157,15 +155,15 @@ export default function ViewTripCard(option) {
                 </DateTagWrapper>
                 <Horiz />
                 <CalcContainer>
-                <FigureContainer>
-                    <FigureTitle>Distance</FigureTitle>
-                    <FigureValue>{option.expense_mileage}<FigureFixMile>mi</FigureFixMile></FigureValue>
-                </FigureContainer>
-                <LineTemplate />
                     <FigureContainer>
-                        <FigureTitle>Amount</FigureTitle>
-                        <FigureValue><FigureFix>$</FigureFix>{option.expense_dollar_amt}</FigureValue>
+                        <FigureTitle>Distance</FigureTitle>
+                        <FigureValue>{option.expense_mileage}<FigureFixMile>mi</FigureFixMile></FigureValue>
                     </FigureContainer>
+                    <LineTemplate />
+                        <FigureContainer>
+                            <FigureTitle>Amount</FigureTitle>
+                            <FigureValue><FigureFix>$</FigureFix>{option.expense_dollar_amt}</FigureValue>
+                        </FigureContainer>
                 </CalcContainer>
                 <Horiz />
                 <BlockWrapper>

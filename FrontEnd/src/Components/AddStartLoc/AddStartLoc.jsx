@@ -85,35 +85,27 @@ export default function AddStartLoc() {
                         <StartLocationForm id="txtAddTripStartLoc" placeholder="Search address"/>
                     </StartLocationContainer>
                     <LocationTitle>Your Locations</LocationTitle>
-                    {/* If Saved Addresses array is empty, show this code block: */}
-                        {/* START */}
-                        
-                        {/* END */}
-                    {/* If Saved Addresses array has 1 or more elements, show this code block: */}
-                        {/* START */}
-                        {/* Map array of Saved Addresses of the Current User here */}
-                        {
-                            loading ?
-                            (<p>Loading...</p>) : 
-                            (addresses.length ?
-                                (addresses.map((option, index) => (
-                                        <AddressCardComponent 
-                                            key={index} 
-                                            onChange={() => setIsSelected(index)}
-                                            selected={isSelected === index}
-                                            option={option}
-                                        />
-                                    ))
-                                ) : (<LocationEmptyContainer>
-                                        <SavedLocationEmptyMessage>
-                                        Looks like you have not saved any locations. Saved locations will appear here. Start by searching a name or address!
-                                        </SavedLocationEmptyMessage>
-                                        <SavesLocationEmptyImage src={TouristMap} />
-                                    </LocationEmptyContainer>
-                                )
+                    {
+                        loading ?
+                        (<p>Loading...</p>) : 
+                        (addresses.length ?
+                            (addresses.map((option, index) => (
+                                    <AddressCardComponent 
+                                        key={index} 
+                                        onChange={() => setIsSelected(index)}
+                                        selected={isSelected === index}
+                                        option={option}
+                                    />
+                                ))
+                            ) : (<LocationEmptyContainer>
+                                    <SavedLocationEmptyMessage>
+                                    Looks like you have not saved any locations. Saved locations will appear here. Start by searching a name or address!
+                                    </SavedLocationEmptyMessage>
+                                    <SavesLocationEmptyImage src={TouristMap} />
+                                </LocationEmptyContainer>
                             )
-                        }
-                        {/* END */}
+                        )
+                    }
                 </LocationContent>
                 <AddTripButtonContainer>
                     <NextButton>Next</NextButton>

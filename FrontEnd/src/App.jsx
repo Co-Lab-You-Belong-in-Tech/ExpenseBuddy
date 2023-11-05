@@ -20,7 +20,7 @@ export default function App() {
       <BrowserRouter>
         <div className="main-container">
           <Routes>
-            <Route path='/' element={ <Dashboard /> } />
+            <Route path='/' element={ <ViewAllTrips /> } />
             <Route path='/trips/add' element={ <AddTrip /> } />
             <Route path='/trips/odom' element={ <AddOdom /> } />
             <Route path='/trips' element={ <ViewAllTrips /> } />

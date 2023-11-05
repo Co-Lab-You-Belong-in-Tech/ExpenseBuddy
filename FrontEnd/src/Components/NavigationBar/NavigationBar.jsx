@@ -45,20 +45,21 @@ export default function NavigationBar() {
                         <HomeIcon />
                     </NavLink>
 
+                    <BottomSheetButton onClick={() => setOpen(true)}><AddIcon /></BottomSheetButton>
+
                     <NavLink to='/trips' className="navlink">
                         <TripsIcon />
                     </NavLink>
 
-                    <BottomSheetButton onClick={() => setOpen(true)}><AddIcon /></BottomSheetButton>
+                    {/* Hidden per PM's request */}
                     
-                    <NavLink to='/reports' className="navlink">
+                    {/* <NavLink to='/reports' className="navlink">
                         <ReportsIcon />
                     </NavLink>
                     
                     <NavLink to='/expenses' className="navlink">
                         <ExpensesIcon />
-                    </NavLink>                
-                    
+                    </NavLink>                 */}
                     <Sheet 
                         isOpen={isOpen} 
                         onClose={() => setOpen(false)}
