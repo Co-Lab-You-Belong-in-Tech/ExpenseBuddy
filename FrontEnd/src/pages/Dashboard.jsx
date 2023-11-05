@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import TopBar from "../Components/TopBar/TopBar"
-
+import { Link } from 'react-router-dom'
 import dashboard from '../Images/dashboard.svg'
 import MonthYearPicker from '../Components/MonthYearPicker'
 import ChevronRightIco from '../Icons/ChevronRightIco'
@@ -47,7 +47,7 @@ const TileDesc = styled.div`
   padding-left: 10px;
   padding-right: 10px;
 `
-const ImgageCardWrapper = styled.div`
+const ImageCardWrapper = styled.div`
   width: 96%;
   justify-content: center;
   align-items: center;
@@ -68,7 +68,7 @@ const CardWrapper = styled.div`
   justify-content: space-around;
   margin: 2%;
 `
-const ArrowWrapper = styled.div`
+const ArrowWrapper = styled.a`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -149,8 +149,9 @@ const Dashboard = () => {
             <TileDesc>Logged</TileDesc>
           </Tile>
         </SummaryWrapper>
-        <ImgageCardWrapper>
+        <ImageCardWrapper>
           <DashImage src={dashboard}/>
+
           <CardWrapper>
             <TextBlockWrapper>
               <IconTripWrapper>
@@ -168,11 +169,14 @@ const Dashboard = () => {
                 Learn More
               </LearnMore>
             </TextBlockWrapper>
-            <ArrowWrapper>
-              <ChevronRightIco />
+            <ArrowWrapper >
+              <Link to="/trips">
+                <ChevronRightIco />
+              </Link>
             </ArrowWrapper>
           </CardWrapper>
-          <CardWrapper>
+
+          {/* <CardWrapper>
             <TextBlockWrapper>
               <IconTripWrapper>
                 <IconWrapper>
@@ -192,8 +196,9 @@ const Dashboard = () => {
             <ArrowWrapper>
               <ChevronRightIco />
             </ArrowWrapper>
-          </CardWrapper>
-        </ImgageCardWrapper>
+          </CardWrapper> */}
+
+        </ImageCardWrapper>
 
       </Container>
     </>
