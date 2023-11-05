@@ -48,7 +48,7 @@ const TileDesc = styled.div`
   padding-right: 10px;
 `
 const ImageCardWrapper = styled.div`
-  width: 96%;
+  width: 95%;
   justify-content: center;
   align-items: center;
   padding: 10px;
@@ -69,7 +69,7 @@ const CardWrapper = styled.div`
   justify-content: space-around;
   margin: 2%;
 `
-const ArrowWrapper = styled.a`
+const ArrowWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
