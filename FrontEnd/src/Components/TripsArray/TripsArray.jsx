@@ -5,8 +5,7 @@ const base_api_url = import.meta.env.VITE_APP_BASE_API
 const gian = import.meta.env.VITE_APP_GIAN
 
 export default function TripsArray() {
-
-    const [ trips, setTrips ] = useState([])
+    const [ trips, setTrips ] = useState([{}])
     const [ loading, setLoading ] = useState(false)
 
     useEffect(() => {
@@ -23,8 +22,14 @@ export default function TripsArray() {
                 throw new Error("Failed to fetch")
             }
             const data = await res.json()
-            console.log(data)
-            setTrips(data)
+            const addy = await data
+            const arr = []
+            console.log(addy)
+            for (let k of addy) {
+                arr.push(k)
+            }
+            setTrips(arr)
+            console.log(trips)
             setLoading(false)
         })()
     }, [])
@@ -33,13 +38,8 @@ export default function TripsArray() {
     <>
         {
             loading ? 
-            (<p>Loading...</p>) :
-            (trips.map((option, index) => (
-                <ViewTripCard
-                     key={index}
-                     option={option}
-                />
-            )))
+            <p>Loading...</p> :
+            trips.map((option, index) => <ViewTripCard key={index} option={option} />)
         }
     </>
   )
