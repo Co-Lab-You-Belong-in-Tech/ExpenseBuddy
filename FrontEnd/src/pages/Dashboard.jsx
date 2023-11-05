@@ -57,9 +57,10 @@ const ImageCardWrapper = styled.div`
 `
 const DashImage = styled.img`
   width: 100%;
+  padding-bottom: 10px;
 `
 const CardWrapper = styled.div`
-  width: 92%;
+  width: 90%;
   background-color: #F3F6FF;
   display: flex;
   flex-direction: row;
