@@ -6,7 +6,7 @@ import CalendarIco from "../../Icons/CalendarIco.svg"
 import TimeIco from "../../Icons/TimeIco.svg"
 import MeterIco from "../../Icons/MeterIco.svg"
 import InfoIco from "../../Icons/InfoIco.svg"
-import { CAlert, CButton, CCloseButton } from '@coreui/react';
+import ExitIco from '../../Icons/ExitIco'
 
 const base_api_url = import.meta.env.VITE_APP_BASE_API
 const gian = import.meta.env.VITE_APP_GIAN
@@ -206,6 +206,34 @@ export const InfoMessage = styled.a`
 
 `
 
+const AlertMessage = styled.div`
+    display:flex;
+    flex-direction: row;
+    background-color: #adeae1;
+    padding: 5px;
+    border-radius: 8px;
+`
+const AlertText = styled.div`
+    display: flex;
+    flex-direction: column;
+    color: var(--Light-Green, #009479);
+    text-align: start;
+    font-family: Lexend;
+    font-size: 14px;
+    font-weight: 400;
+    padding-top: 15px;
+    padding-left: 15px;
+`
+const AlertListItem = styled.div`
+    padding-bottom: 15px;
+`
+const AlertClose = styled.button`
+    border: none;
+    background-color: #adeae1;
+    display: flex;
+    justify-content: flex-start;
+`
+
 export const PurposeMenu = styled.select`
     font-family: Lexend;
     font-size: 16px;
@@ -288,14 +316,7 @@ export const AlternateLink = styled.p`
 
 export default function Odom() {
 
-    const vars = {
-        fontSize: 14,
-        color: "#009479",
-        width: "61%",
-        
-      }
-
-    const [visible, setVisible] = useState(false)
+    const [isVisible, setIsVisible] = useState(false);
     const [rate, setRate] = useState(0.655);
     const { register, reset, watch, handleSubmit } = useForm()
     const startOdom = watch('expense_odom_start', false)
@@ -307,6 +328,10 @@ export default function Odom() {
     let current_date = dt.toISOString().substring(0,10)
     let current_time = dt.getHours() + ":" + dt.getMinutes()
     let mileage = endOdom - startOdom
+
+    const toggleVisibility = () => {
+        setIsVisible(!isVisible);
+      };
 
     // Event handler to update the rate based on the selected option
     const handleDropdownChange = (event) => {
@@ -420,11 +445,15 @@ export default function Odom() {
                 </CalcContainer>
                 <InfoContainer>
                     <InfoIcon />
-                    <InfoMessage  onClick={() => setVisible(true)}>How is the amount calculated?</InfoMessage>
+                    <InfoMessage  onClick={toggleVisibility}>How is the amount calculated?</InfoMessage>
                 </InfoContainer>
-                    <CAlert color="info" dismissible visible={visible} onClose={() => setVisible(false)} style={vars}>
-                        Business mileage reimbursement rate in the US for the 2023 tax season is $0.655 per mile.
-                    </CAlert>
+                    <AlertMessage>
+                    <AlertText>
+                        <AlertListItem>Business reimbursement rate for the US 2023 tax season is $0.655</AlertListItem>
+                        <AlertListItem>Personal reimbursement rate for the US 2023 tax season is $0</AlertListItem>
+                    </AlertText>
+                    <AlertClose onClick={toggleVisibility}><ExitIco /></AlertClose>
+                    </AlertMessage>
                 <DetailsContainer>
                     <FormLabel htmlFor="txtPurp">Purpose *</FormLabel>
                     <PurposeMenu 
