@@ -7,6 +7,9 @@ import MonthYearPicker from '../Components/MonthYearPicker'
 import ChevronRightIco from '../Icons/ChevronRightIco'
 import TripsIco from '../Icons/TripsIco'
 
+const base_api_url = import.meta.env.VITE_APP_BASE_API
+const gian = import.meta.env.VITE_APP_GIAN
+
 const Container = styled.div`
     width: auto;
     height: 75vh;
@@ -103,12 +106,14 @@ const LearnMore = styled.div`
 
 const Dashboard = () => {
 
-  const [dateFilter, setDateFilter] = useState(
+  const [ trips, setTrips ] = useState([])
+  const [ dateFilter, setDateFilter ] = useState(
     { 
       month: (new Date()).getMonth(), 
       year: (new Date()).getFullYear()
     }
   )
+  const [ loading, setLoading ] = useState(false)
 
   useEffect(() => {
     (async () => {
@@ -123,8 +128,9 @@ const Dashboard = () => {
       if (!res.ok) {
         throw new Error("Failed to fetch")
       }
-      setTrips(await res.json());
-      setLoading(false);
+      setTrips(await res.json())
+      setLoading(false)
+      console.log(trips)
     })()
   }, [])
 
@@ -137,15 +143,48 @@ const Dashboard = () => {
         </MonthYearWrapper>
         <SummaryWrapper>
           <Tile>
-            <TileText>50</TileText>
+            <TileText>
+            {
+                loading ?
+                <span>Loading</span> :
+                trips.filter((trip) => {
+                  let isValid = true;
+                  if (!trip?.expense_date?.startsWith(`${dateFilter.year}-${dateFilter.month}`))
+                  isValid = false;
+                  return isValid;
+                }).reduce((total, trip) => parseInt(trip.expense_mileage) + total,0)
+              }
+            </TileText>
             <TileDesc>Miles Driven</TileDesc>
           </Tile>
           <Tile>
-            <TileText>17</TileText>
+            <TileText>
+              {
+                loading ?
+                <span>Loading</span> :
+                trips.filter((trip) => {
+                  let isValid = true;
+                  if (!trip?.expense_date?.startsWith(`${dateFilter.year}-${dateFilter.month}`))
+                  isValid = false;
+                  return isValid;
+                }).length
+              }
+            </TileText>
             <TileDesc>Total Trips</TileDesc>
           </Tile>
           <Tile>
-            <TileText>$50</TileText>
+            <TileText>$ 
+            {
+                loading ?
+                <span>Loading</span> :
+                trips.filter((trip) => {
+                  let isValid = true;
+                  if (!trip?.expense_date?.startsWith(`${dateFilter.year}-${dateFilter.month}`))
+                  isValid = false;
+                  return isValid;
+                }).reduce((total, trip) => parseInt(trip.expense_dollar_amt) + total,0)
+              }
+            </TileText>
             <TileDesc>Logged</TileDesc>
           </Tile>
         </SummaryWrapper>
