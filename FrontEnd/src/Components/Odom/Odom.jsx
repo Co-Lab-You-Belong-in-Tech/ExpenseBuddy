@@ -300,6 +300,7 @@ export default function Odom() {
     const { register, reset, watch, handleSubmit } = useForm()
     const startOdom = watch('expense_odom_start', false)
     const endOdom = watch('expense_odom_end', false)
+    const purpose = watch('expense_type', false)
     const navigate = useNavigate()
 
     let dt = new Date()
@@ -307,16 +308,7 @@ export default function Odom() {
     let current_date = dt.toISOString().substring(0,10)
     let current_time = dt.getHours() + ":" + dt.getMinutes()
     let mileage = endOdom - startOdom
-
-    // Event handler to update the rate based on the selected option
-    const handleDropdownChange = (event) => {
-        const selectedValue = event.target.value;
-        if (selectedValue === "business") {
-            setRate(0.655);
-        } else {
-            setRate(0);
-        }
-    };
+    let reimbursedamt = (mileage * rate).toFixed(2)
 
     function showMiles() {
         if (mileage >= 0) {
@@ -327,9 +319,6 @@ export default function Odom() {
         }
     }
   
-
-    let reimbursedamt = (mileage * rate).toFixed(2)
-
     function reimbursement() {
         if (mileage >= 0) {
             return reimbursedamt
@@ -361,6 +350,15 @@ export default function Odom() {
         console.log(saved)
         navigate('/success')
     }
+
+    useEffect(() => {
+        if (purpose === "business") {
+            setRate(0.655);
+        } else {
+            setRate(0);
+        }
+        console.log("Purpose: " + purpose)
+    }, [purpose])
 
     return (
         <>
@@ -428,7 +426,6 @@ export default function Odom() {
                 <DetailsContainer>
                     <FormLabel htmlFor="txtPurp">Purpose *</FormLabel>
                     <PurposeMenu 
-                        onChange={handleDropdownChange}
                         id="txtPurp" 
                         placeholder="Select"
                         {...register('expense_type')} 
