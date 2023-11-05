@@ -7,7 +7,7 @@ const Container = styled.div`
     display: flex;
     flex-direction: row;
 `
-const Bubble = styled.div`
+const Bubble = styled.button`
     background-color: white;
     border-color: #2D3648;
     color: #2D3648;
@@ -25,7 +25,7 @@ const Bubble = styled.div`
     font-size: small;
     align-items: center;
 
-    &:active {
+    &:focus {
         background-color: #009479;
         color: white;
         border-color: #009479;
@@ -40,8 +40,8 @@ const IconImage = styled.img`
     
 `
 
-const FilterableList = () => {
-  const [filter, setFilter] = useState('all');
+const FilterableList = ({setFilter }) => {
+  const filter = "All Trips";
   const items = [
     { id: 1, name: 'All Trips', category: 'A' },
     { id: 2, name: 'Business', category: 'B' },
@@ -49,7 +49,7 @@ const FilterableList = () => {
     // Add more items here...
   ];
 
-  const filteredItems = filter === 'all' ? items : items.filter(item => item.category === filter);
+  const filteredItems = filter === 'All Trips' ? items : items.filter(item => item.category === filter);
 
   return (
     <div>
@@ -69,11 +69,6 @@ const FilterableList = () => {
             Other
         </Bubble>
       </Container>
-      <ul>
-        {filteredItems.map(item => (
-          <li key={item.id}>{item.name}</li>
-        ))}
-      </ul>
     </div>
   );
 };

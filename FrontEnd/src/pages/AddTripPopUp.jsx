@@ -95,7 +95,7 @@ const NextButton = styled.button`
 
 const AddTripPopUp = () => {
 
-    const [selectedOption, setSelectedOption] = useState('location');
+    const [selectedOption, setSelectedOption] = useState('odometer');
     
     const handleOptionChange = (event) => {
         setSelectedOption(event.target.value);
@@ -115,7 +115,7 @@ const AddTripPopUp = () => {
             <TitleText>How do you prefer to track your mileage?</TitleText>
         </TitleWrapper>
         <Horiz></Horiz>
-        <TileWrapper>
+        {/* <TileWrapper>
             <TileBackground>
                 <TileIcon>
                     <TripsIco />
@@ -135,7 +135,7 @@ const AddTripPopUp = () => {
                     />
                 </TileIcon>
             </TileBackground>
-        </TileWrapper>
+        </TileWrapper> */}
 
         <TileWrapper>
             <TileBackground>

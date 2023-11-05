@@ -120,7 +120,7 @@ const Horiz = styled.hr`
     display: relative;
     color: #E1E6EF;
     border: 1px solid;
-    width: calc(100% + .5rem)
+    width: calc(100% + .5rem);
 `
 const BlockWrapper = styled.div`
     display: flex;
@@ -145,32 +145,33 @@ const Notes = styled.span`
     
 `
 
-export default function ViewTripCard(option) {
+export default function ViewTripCard(trip) {
+    if (!trip) return;
     return(
         <Container>
             <Wrapper>
                 <DateTagWrapper>
-                    <Date>{option.expense_date}</Date>
-                    <Tag>{option.expense_type}</Tag>
+                    <Date>{trip.expense_date}</Date>
+                    <Tag>{trip.expense_type}</Tag>
                 </DateTagWrapper>
                 <Horiz />
                 <CalcContainer>
                     <FigureContainer>
                         <FigureTitle>Distance</FigureTitle>
-                        <FigureValue>{option.expense_mileage}<FigureFixMile>mi</FigureFixMile></FigureValue>
+                        <FigureValue>{trip.expense_mileage}<FigureFixMile>mi</FigureFixMile></FigureValue>
                     </FigureContainer>
                     <LineTemplate />
                         <FigureContainer>
                             <FigureTitle>Amount</FigureTitle>
-                            <FigureValue><FigureFix>$</FigureFix>{option.expense_dollar_amt}</FigureValue>
+                            <FigureValue><FigureFix>$</FigureFix>{trip.expense_dollar_amt}</FigureValue>
                         </FigureContainer>
                 </CalcContainer>
                 <Horiz />
                 <BlockWrapper>
-                    <IconWrapper src={CarProfile} /><TripID>Trip ID # {option.expense_id}</TripID>
+                    <IconWrapper src={CarProfile} /><TripID>Trip ID # {trip.expense_id}</TripID>
                 </BlockWrapper>
                 <BlockWrapper>
-                    <IconWrapper src={NotesPic} /><Notes>{option.expense_notes}</Notes>
+                    <IconWrapper src={NotesPic} /><Notes>{trip.expense_notes}</Notes>
                 </BlockWrapper>
             </Wrapper>
         </Container>

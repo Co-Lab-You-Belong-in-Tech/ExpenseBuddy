@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import TopBar from '../Components/TopBar/TopBar'
 import MonthYearPicker from '../Components/MonthYearPicker'
@@ -20,16 +20,22 @@ const MonthYearWrapper = styled.div`
 `
 
 export default function ViewAllTrips() {
+  const [typeFilter, setTypeFilter] = useState("All Trips");
+  const [dateFilter, setDateFilter] = useState(
+    { 
+      month: (new Date()).getMonth(), 
+      year: (new Date()).getFullYear()
+    }
+  );
   return (
     <>
-    <TopBar headerTitle="Trips" back="True"/>
+    <TopBar headerTitle="Welcome!"/>
     <Container>
         <MonthYearWrapper>
-          <MonthYearPicker />
+          <MonthYearPicker setDateFilter={setDateFilter} />
         </MonthYearWrapper>
-        <FilterableList />
-        <TripsArray />
-        <ViewTripCard />
+        <FilterableList setFilter={setTypeFilter} />
+        <TripsArray typeFilter={typeFilter}  dateFilter={dateFilter} />
     </Container>
     </>
   )

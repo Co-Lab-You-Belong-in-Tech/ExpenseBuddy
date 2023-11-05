@@ -1,6 +1,5 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
 import NavigationBar from './Components/NavigationBar/NavigationBar'
-import Dashboard from './pages/Dashboard'
 import AddTrip from './pages/AddTrip'
 import AddExpense from './pages/AddExpense'
 import AllExpenses from './pages/AllExpenses'

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 const Container = styled.div `
@@ -21,7 +21,7 @@ const YearWrapper = styled.select `
     border: none;
 `
 
-const MonthYearPicker = () => {
+const MonthYearPicker = ({setDateFilter}) => {
   const currentYear = new Date().getFullYear();
   const years = Array.from({ length: 10 }, (_, index) => currentYear - index);
   const months = [
@@ -40,6 +40,14 @@ const MonthYearPicker = () => {
     setSelectedMonth(e.target.value);
   };
 
+  useEffect(() => {
+    setDateFilter({
+      year: selectedYear,
+      month: months.indexOf(selectedMonth) + 1
+    })
+    console.log(selectedYear, selectedMonth)
+  }, [selectedYear, selectedMonth])
+  
   return (
     <Container>
       <MonthWrapper value={selectedMonth} onChange={handleMonthChange}>

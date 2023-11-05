@@ -410,6 +410,7 @@ export default function Odom() {
                         {...register('expense_type')} 
                         required >
                             <option value="business">Business</option>
+                            <option value="other">Other</option>
                     </PurposeMenu>
                 </DetailsContainer>
                 <DetailsContainer>
