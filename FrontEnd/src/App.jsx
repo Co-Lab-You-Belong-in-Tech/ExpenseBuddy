@@ -9,6 +9,7 @@ import AddOdom from "./pages/AddOdom"
 import ComingSoon from "./pages/ComingSoon"
 import TripSuccess from "./pages/TripSuccess"
 import ViewAllTrips from "./pages/ViewAllTrips"
+import Dashboard from "./pages/Dashboard"
 import './style.css'
 
 
@@ -29,8 +30,8 @@ export default function App() {
             <Route path='/settings' element={ <Settings /> } />
             <Route path='/comingsoon' element={ <ComingSoon /> } />
             <Route path='/success' element={ <TripSuccess /> } />
+            <Route path='/home' element={ <Dashboard /> } />
             <Route path='*' element={ <Navigate to='/' /> } />
-            
           </Routes>
           <NavigationBar />
         </div>

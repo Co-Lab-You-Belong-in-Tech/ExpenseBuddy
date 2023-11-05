@@ -376,28 +376,15 @@ export default function Odom() {
         console.log("Purpose: " + purpose)
     }, [purpose])
 
-
-    const showDiv = () => {
-      setDivVisibility(true);
-    };
+    const showDiv = e => {
+        e.preventDefault()
+        setDivVisibility(true)
+    }
   
-    const closeDiv = () => {
-      setDivVisibility(false);
-    };
-  
-    useEffect(() => {
-      if (isDivVisible) {
-        document.body.addEventListener("click", closeDiv);
-      } else {
-        document.body.removeEventListener("click", closeDiv);
-      }
-  
-      return () => {
-        document.body.removeEventListener("click", closeDiv);
-      };
-      console.log("divisible: " +isDivVisible)
-    }, [isDivVisible]);
-
+    const closeDiv = (e) => {
+        e.preventDefault()
+      setDivVisibility(false)
+    }
 
     return (
         <>
@@ -457,15 +444,17 @@ export default function Odom() {
                 </CalcContainer>
                 <InfoContainer>
                     <InfoIcon />
-                    <InfoMessage  onClick={(e) => { e.preventDefault(); showDiv(); }}>How is the amount calculated?</InfoMessage>
+                    <InfoMessage onClick={showDiv}>How is the amount calculated?</InfoMessage>
                 </InfoContainer>
+                { isDivVisible && (
                     <AlertMessage>
-                    <AlertText>
-                        <AlertListItem>Business reimbursement rate for the US 2023 tax season is $0.655</AlertListItem>
-                        <AlertListItem>Personal reimbursement rate for the US 2023 tax season is $0</AlertListItem>
-                    </AlertText>
-                    <AlertClose onClick={closeDiv}><ExitIco /></AlertClose>
+                        <AlertText>
+                            <AlertListItem>Business reimbursement rate for the US 2023 tax season is $0.655 per mile.</AlertListItem>
+                            <AlertListItem>Personal reimbursement rate for the US 2023 tax season is $0.000 per mile.</AlertListItem>
+                        </AlertText>
+                        <AlertClose onClick={closeDiv}><ExitIco /></AlertClose>
                     </AlertMessage>
+                )}
                 <DetailsContainer>
                     <FormLabel htmlFor="txtPurp">Purpose *</FormLabel>
                     <PurposeMenu 
