@@ -8,11 +8,8 @@ const Container = styled.div`
     width: auto;
     align-items: center;
     justify-content: center;
-    background-color: azure;
+    background-color: white;
     padding: 16px 20px;
-
-    /* Gian's Code */
-    padding: 0px;
     overflow: auto;
 `
 
