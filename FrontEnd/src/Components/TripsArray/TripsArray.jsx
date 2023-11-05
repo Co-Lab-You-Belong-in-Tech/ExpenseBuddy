@@ -32,14 +32,15 @@ export default function TripsArray({typeFilter, dateFilter}) {
         loading ?
           <p>Loading...</p> :
           trips.filter((trip) => {
-            let isValid = false;
+            let isValid = true;
             
-            if (!typeFilter || typeFilter === "All Trips") isValid = true;
-            else isValid = trip?.expense_type?.toLowerCase() === typeFilter?.toLowerCase();
+            if (
+              (!trip?.expense_date?.startsWith(`${dateFilter.year}-${dateFilter.month}`)) 
+            || 
+            (typeFilter !== "All Trips" && typeFilter.toLowerCase() !== trip?.expense_type?.toLowerCase())
+            )
 
-            if (!dateFilter) isValid = true;
-            else isValid = trip?.expense_date?.startsWith(`${dateFilter.year}-${dateFilter.month}`);
-            
+            isValid = false;
             return isValid;
           }).map((tripData, index) => <ViewTripCard key={index} {...tripData} />)
       }

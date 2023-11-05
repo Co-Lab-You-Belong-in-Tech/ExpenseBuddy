@@ -6,6 +6,7 @@ import CalendarIco from "../../Icons/CalendarIco.svg"
 import TimeIco from "../../Icons/TimeIco.svg"
 import MeterIco from "../../Icons/MeterIco.svg"
 import InfoIco from "../../Icons/InfoIco.svg"
+import { CAlert, CButton, CCloseButton } from '@coreui/react';
 
 const base_api_url = import.meta.env.VITE_APP_BASE_API
 const gian = import.meta.env.VITE_APP_GIAN
@@ -287,6 +288,15 @@ export const AlternateLink = styled.p`
 
 export default function Odom() {
 
+    const vars = {
+        fontSize: 14,
+        color: "#009479",
+        width: "61%",
+        
+      }
+
+    const [visible, setVisible] = useState(false)
+    const [rate, setRate] = useState(0.655);
     const { register, reset, watch, handleSubmit } = useForm()
     const startOdom = watch('expense_odom_start', false)
     const endOdom = watch('expense_odom_end', false)
@@ -296,8 +306,17 @@ export default function Odom() {
     dt.setDate(dt.getDate())
     let current_date = dt.toISOString().substring(0,10)
     let current_time = dt.getHours() + ":" + dt.getMinutes()
-
     let mileage = endOdom - startOdom
+
+    // Event handler to update the rate based on the selected option
+    const handleDropdownChange = (event) => {
+        const selectedValue = event.target.value;
+        if (selectedValue === "business") {
+            setRate(0.655);
+        } else {
+            setRate(0);
+        }
+    };
 
     function showMiles() {
         if (mileage >= 0) {
@@ -307,8 +326,9 @@ export default function Odom() {
             return 0
         }
     }
+  
 
-    let reimbursedamt = (mileage * 0.655).toFixed(2)
+    let reimbursedamt = (mileage * rate).toFixed(2)
 
     function reimbursement() {
         if (mileage >= 0) {
@@ -400,11 +420,15 @@ export default function Odom() {
                 </CalcContainer>
                 <InfoContainer>
                     <InfoIcon />
-                    <InfoMessage>How is the amount calculated?</InfoMessage>
+                    <InfoMessage  onClick={() => setVisible(true)}>How is the amount calculated?</InfoMessage>
                 </InfoContainer>
+                    <CAlert color="info" dismissible visible={visible} onClose={() => setVisible(false)} style={vars}>
+                        Business mileage reimbursement rate in the US for the 2023 tax season is $0.655 per mile.
+                    </CAlert>
                 <DetailsContainer>
                     <FormLabel htmlFor="txtPurp">Purpose *</FormLabel>
                     <PurposeMenu 
+                        onChange={handleDropdownChange}
                         id="txtPurp" 
                         placeholder="Select"
                         {...register('expense_type')} 
@@ -422,8 +446,9 @@ export default function Odom() {
                 </DetailsContainer>
                 <ButtonContainer>
                     <NextButton>Next</NextButton>
-                    <AlternateLink>Record location details instead</AlternateLink>
+                    {/* <AlternateLink>Record location details instead</AlternateLink> */}
                 </ButtonContainer>
+
             </OdomFormContainer>
             
         </>

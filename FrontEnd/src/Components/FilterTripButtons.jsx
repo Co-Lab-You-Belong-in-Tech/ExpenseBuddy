@@ -15,10 +15,10 @@ const Bubble = styled.button`
     border-width: 1px;
     display: flex;
     flex-direction: row;
-    padding-left: 8px;
-    padding-right: 8px;
-    padding-top: 4px;
-    padding-bottom: 4px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 6px;
+    padding-bottom: 6px;
     border-radius: 20px;
     width: auto;
     margin: 5px;
