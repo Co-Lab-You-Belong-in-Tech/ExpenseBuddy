@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import TopBar from "../Components/TopBar/TopBar"
 import { mobile } from '../responsive'
@@ -102,12 +102,38 @@ const LearnMore = styled.div`
 `
 
 const Dashboard = () => {
+
+  const [dateFilter, setDateFilter] = useState(
+    { 
+      month: (new Date()).getMonth(), 
+      year: (new Date()).getFullYear()
+    }
+  )
+
+  useEffect(() => {
+    (async () => {
+      setLoading(true);
+      const res = await fetch(`${base_api_url}/expense`, {
+        method: "GET",
+        headers: {
+          'Content-Type': 'application/json',
+          'x-access-token': `Bearer ${gian}`
+        }
+      })
+      if (!res.ok) {
+        throw new Error("Failed to fetch")
+      }
+      setTrips(await res.json());
+      setLoading(false);
+    })()
+  }, [])
+
   return (
     <>
       <TopBar headerTitle="Welcome, Emily" />
       <Container>
         <MonthYearWrapper>
-          <MonthYearPicker />
+          <MonthYearPicker setDateFilter={setDateFilter}/>
         </MonthYearWrapper>
         <SummaryWrapper>
           <Tile>
