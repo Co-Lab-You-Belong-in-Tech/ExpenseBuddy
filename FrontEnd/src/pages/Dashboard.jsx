@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import TopBar from "../Components/TopBar/TopBar"
 
-import dashboard from '../Images/dashboard.png'
+import dashboard from '../Images/dashboard.svg'
 import MonthYearPicker from '../Components/MonthYearPicker'
 import ChevronRightIco from '../Icons/ChevronRightIco'
 import TripsIco from '../Icons/TripsIco'
