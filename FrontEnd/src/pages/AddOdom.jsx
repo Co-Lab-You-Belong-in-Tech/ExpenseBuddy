@@ -12,6 +12,8 @@ const Container = styled.div`
     padding: 16px 20px;
 
     /* Gian's Code */
+    max-width: 700px;
+    margin: 0 auto;
     padding: 0px;
     overflow: auto;
 `
@@ -27,4 +29,3 @@ export default function AddOdom() {
     </>
   )
 }
-
