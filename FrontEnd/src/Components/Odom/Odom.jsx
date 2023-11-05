@@ -2,11 +2,10 @@ import React, { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from "react-router-dom"
 import styled from 'styled-components'
-import CalendarIco from "../../Icons/CalendarIco.svg"
 import TimeIco from "../../Icons/TimeIco.svg"
 import MeterIco from "../../Icons/MeterIco.svg"
 import InfoIco from "../../Icons/InfoIco.svg"
-import { CAlert, CButton, CCloseButton } from '@coreui/react';
+import ExitIco from '../../Icons/ExitIco'
 
 const base_api_url = import.meta.env.VITE_APP_BASE_API
 const gian = import.meta.env.VITE_APP_GIAN
@@ -15,12 +14,9 @@ export const OdomFormContainer = styled.form`
     display: flex;
     flex-direction: column;
     width: auto;
-    height: 90vh;
     align-items: center;
     gap: 24px;
-    background: white;
     padding: 16px 20px 20px 16px;
-
 `
 
 export const DetailsContainer = styled.div`
@@ -36,7 +32,7 @@ export const FormLabel = styled.label`
     color: var(--wf-base-800, #2D3648);
     /* Form field label */
     font-family: Lexend;
-    font-size: medium;
+    font-size: 14px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
@@ -82,7 +78,7 @@ export const TimeTextBox = styled.input`
 export const OdomDetailsContainer = styled.div`
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: stretch;
     width: 100%;
 `
 
@@ -91,7 +87,6 @@ export const OdomForm = styled.div`
     width: 100%;
     height: 70px;
     flex-direction: column;
-    align-items: flex-start;
     gap: 4px;
 
 `
@@ -206,6 +201,34 @@ export const InfoMessage = styled.a`
 
 `
 
+const AlertMessage = styled.div`
+    display:flex;
+    flex-direction: row;
+    background-color: #adeae1;
+    padding: 5px;
+    border-radius: 8px;
+`
+const AlertText = styled.div`
+    display: flex;
+    flex-direction: column;
+    color: var(--Light-Green, #009479);
+    text-align: start;
+    font-family: Lexend;
+    font-size: 14px;
+    font-weight: 400;
+    padding-top: 15px;
+    padding-left: 15px;
+`
+const AlertListItem = styled.div`
+    padding-bottom: 15px;
+`
+const AlertClose = styled.button`
+    border: none;
+    background-color: #adeae1;
+    display: flex;
+    justify-content: flex-start;
+`
+
 export const PurposeMenu = styled.select`
     font-family: Lexend;
     font-size: 16px;
@@ -288,14 +311,7 @@ export const AlternateLink = styled.p`
 
 export default function Odom() {
 
-    const vars = {
-        fontSize: 14,
-        color: "#009479",
-        width: "61%",
-        
-      }
-
-    const [visible, setVisible] = useState(false)
+    const [isDivVisible, setDivVisibility] = useState(false);
     const [rate, setRate] = useState(0.655);
     const { register, reset, watch, handleSubmit } = useForm()
     const startOdom = watch('expense_odom_start', false)
@@ -360,6 +376,29 @@ export default function Odom() {
         console.log("Purpose: " + purpose)
     }, [purpose])
 
+
+    const showDiv = () => {
+      setDivVisibility(true);
+    };
+  
+    const closeDiv = () => {
+      setDivVisibility(false);
+    };
+  
+    useEffect(() => {
+      if (isDivVisible) {
+        document.body.addEventListener("click", closeDiv);
+      } else {
+        document.body.removeEventListener("click", closeDiv);
+      }
+  
+      return () => {
+        document.body.removeEventListener("click", closeDiv);
+      };
+      console.log("divisible: " +isDivVisible)
+    }, [isDivVisible]);
+
+
     return (
         <>
             <OdomFormContainer onSubmit={handleSubmit(handleSaveOdom)}>
@@ -418,11 +457,15 @@ export default function Odom() {
                 </CalcContainer>
                 <InfoContainer>
                     <InfoIcon />
-                    <InfoMessage  onClick={() => setVisible(true)}>How is the amount calculated?</InfoMessage>
+                    <InfoMessage  onClick={(e) => { e.preventDefault(); showDiv(); }}>How is the amount calculated?</InfoMessage>
                 </InfoContainer>
-                    <CAlert color="info" dismissible visible={visible} onClose={() => setVisible(false)} style={vars}>
-                        Business mileage reimbursement rate in the US for the 2023 tax season is $0.655 per mile.
-                    </CAlert>
+                    <AlertMessage>
+                    <AlertText>
+                        <AlertListItem>Business reimbursement rate for the US 2023 tax season is $0.655</AlertListItem>
+                        <AlertListItem>Personal reimbursement rate for the US 2023 tax season is $0</AlertListItem>
+                    </AlertText>
+                    <AlertClose onClick={closeDiv}><ExitIco /></AlertClose>
+                    </AlertMessage>
                 <DetailsContainer>
                     <FormLabel htmlFor="txtPurp">Purpose *</FormLabel>
                     <PurposeMenu 
