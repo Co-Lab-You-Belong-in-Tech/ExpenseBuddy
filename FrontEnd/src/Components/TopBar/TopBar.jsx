@@ -18,12 +18,14 @@ const Wrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    max-width: 700px;
+    margin: 0 auto;
 `
 const LeftContainer = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-left: 20px;
 `
 const RightContainer = styled.div`
   display: flex;
