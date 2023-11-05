@@ -120,7 +120,7 @@ const Horiz = styled.hr`
     display: relative;
     color: #E1E6EF;
     border: 1px solid;
-    width: calc(100% + .5rem)
+    width: calc(100% + .5rem);
 `
 const BlockWrapper = styled.div`
     display: flex;
