@@ -20,7 +20,7 @@ export default function App() {
       <BrowserRouter>
         <div className="main-container">
           <Routes>
-            <Route path='/' element={ <ViewAllTrips /> } />
+            <Route path='/' element={ <Dashboard /> } />
             <Route path='/trips/add' element={ <AddTrip /> } />
             <Route path='/trips/odom' element={ <AddOdom /> } />
             <Route path='/trips' element={ <ViewAllTrips /> } />
@@ -30,7 +30,6 @@ export default function App() {
             <Route path='/settings' element={ <Settings /> } />
             <Route path='/comingsoon' element={ <ComingSoon /> } />
             <Route path='/success' element={ <TripSuccess /> } />
-            <Route path='/home' element={ <Dashboard /> } />
             <Route path='*' element={ <Navigate to='/' /> } />
           </Routes>
           <NavigationBar />
