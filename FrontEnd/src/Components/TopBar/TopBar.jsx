@@ -20,6 +20,7 @@ const Wrapper = styled.div`
     justify-content: space-between;
     padding: 20px;
 `
+
 const LeftContainer = styled.div`
   display: flex;
   flex-direction: row;
