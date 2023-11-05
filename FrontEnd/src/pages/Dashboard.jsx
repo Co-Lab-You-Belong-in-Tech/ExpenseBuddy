@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import TopBar from "../Components/TopBar/TopBar"
-import { mobile } from '../responsive'
+
 import dashboard from '../Images/dashboard.png'
 import MonthYearPicker from '../Components/MonthYearPicker'
 import ChevronRightIco from '../Icons/ChevronRightIco'

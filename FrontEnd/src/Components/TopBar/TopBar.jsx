@@ -18,9 +18,7 @@ const Wrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-
-    max-width: 700px;
-    margin: 0 auto;
+    padding: 20px;
 `
 const LeftContainer = styled.div`
   display: flex;
