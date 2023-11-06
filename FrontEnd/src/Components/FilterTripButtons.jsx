@@ -24,6 +24,7 @@ const Bubble = styled.button`
     margin: 5px;
     font-size: small;
     align-items: center;
+    cursor:pointer;
 
     &:focus {
         background-color: #009479;

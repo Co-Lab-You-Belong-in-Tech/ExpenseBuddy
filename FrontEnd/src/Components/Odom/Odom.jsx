@@ -198,7 +198,7 @@ export const InfoMessage = styled.a`
     font-weight: 400;
     line-height: normal;
     text-decoration-line: underline;
-
+    cursor:pointer;
 `
 
 const AlertMessage = styled.div`
@@ -227,6 +227,7 @@ const AlertClose = styled.button`
     background-color: #adeae1;
     display: flex;
     justify-content: flex-start;
+    cursor:pointer;
 `
 
 export const PurposeMenu = styled.select`
