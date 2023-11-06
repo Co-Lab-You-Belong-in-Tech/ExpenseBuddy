@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from "styled-components";
-import successimg from '../Images/successimg.png'
+import successimg from '../Images/successimg.svg'
 import TopBar from '../Components/TopBar/TopBar';
 import { useNavigate } from 'react-router';
 
