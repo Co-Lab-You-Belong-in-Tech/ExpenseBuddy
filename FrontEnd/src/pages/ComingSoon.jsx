@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import dashboardpic from '../Images/dashboard.png'
+import dashboardpic from '../Images/dashboard.svg'
 import TopBar from '../Components/TopBar/TopBar';
 
 const Container = styled.div`
