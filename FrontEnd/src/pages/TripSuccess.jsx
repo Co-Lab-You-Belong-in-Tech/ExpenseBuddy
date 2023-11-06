@@ -7,8 +7,10 @@ import { useNavigate } from 'react-router';
 const Container = styled.div`
     width: auto;
     height: 75vh;
-    align-items: center;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
+
     background-color: white;
     padding: 16px 20px;
     overflow: auto;
@@ -21,13 +23,13 @@ const ImageWrapper = styled.div`
 `
 const ImageContainer = styled.img`
   width: 100%;
+  max-height: 30vh;
   display: flex;
-  justify-content: center;
-  
 `
 const TextBlockWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
 `
 const TextHeading = styled.div`
   display: flex;
@@ -51,6 +53,7 @@ const ViewAllTripsButton = styled.button`
   border-color: #009479;
   background-color: white;
   width: 100%;
+  max-width: 1024px;
   margin-top: 20px;
   justify-content: center;
   
@@ -74,8 +77,9 @@ export default function TripSuccess() {
       <TextBlockWrapper>
         <TextHeading>Success!</TextHeading>
         <TextDesc>Your trip has been logged.</TextDesc>
+        <ViewAllTripsButton onClick={nav}>View All Trips</ViewAllTripsButton>
       </TextBlockWrapper>
-      <ViewAllTripsButton onClick={nav}>View All Trips</ViewAllTripsButton>
+      
     </Container>
     </>
   )
