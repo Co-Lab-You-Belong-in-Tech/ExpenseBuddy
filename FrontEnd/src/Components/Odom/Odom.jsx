@@ -201,6 +201,25 @@ export const InfoMessage = styled.a`
     cursor:pointer;
 `
 
+const ValidationMessage = styled.div`
+    display:flex;
+    flex-direction: row;
+    background-color: #981B25;
+    padding: 5px;
+    border-radius: 8px;
+`
+const ValidationText = styled.div`
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+    text-align: start;
+    font-family: Lexend;
+    font-size: 14px;
+    font-weight: 400;
+    padding-top: 15px;
+    padding-left: 15px;
+`
+    
 const AlertMessage = styled.div`
     display:flex;
     flex-direction: row;
@@ -312,7 +331,8 @@ export const AlternateLink = styled.p`
 
 export default function Odom() {
 
-    const [isDivVisible, setDivVisibility] = useState(false);
+    const [isDivVisible, setDivVisibility] = useState(false)
+    const [ isValid, setIsValid ] = useState(true)
     const [rate, setRate] = useState(0.655);
     const { register, reset, watch, handleSubmit } = useForm()
     const startOdom = watch('expense_odom_start', false)
@@ -377,6 +397,16 @@ export default function Odom() {
         console.log("Purpose: " + purpose)
     }, [purpose])
 
+    useEffect(() => {
+        if (startOdom || endOdom) {
+            if (endOdom <= startOdom) {
+                setIsValid(false)
+            } else {
+                setIsValid(true)
+            }
+        } 
+    }, [startOdom, endOdom])
+
     const showDiv = e => {
         e.preventDefault()
         setDivVisibility(true)
@@ -432,6 +462,15 @@ export default function Odom() {
                         />
                     </OdomForm>
                 </OdomDetailsContainer>
+                {
+                    !isValid &&
+                    <ValidationMessage>
+                        <ValidationText>
+                            <AlertListItem>Ending odometer reading is less than starting.</AlertListItem>
+                        </ValidationText>
+                    </ValidationMessage>
+                }
+                
                 <CalcContainer>
                     <FigureContainer>
                         <FigureTitle>Distance</FigureTitle>

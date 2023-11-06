@@ -137,7 +137,7 @@ const Dashboard = () => {
 
   return (
     <>
-      <TopBar headerTitle="Welcome, Emily" />
+      <TopBar headerTitle="Welcome!" />
       <Container>
         <MonthYearWrapper>
           <MonthYearPicker setDateFilter={setDateFilter}/>
