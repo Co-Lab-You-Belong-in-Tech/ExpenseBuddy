@@ -29,7 +29,7 @@ export default function ViewAllTrips() {
   );
   return (
     <>
-    <TopBar headerTitle="Welcome!"/>
+    <TopBar headerTitle="All Trips" back={true} exit={true} />
     <Container>
         <MonthYearWrapper>
           <MonthYearPicker setDateFilter={setDateFilter} />
