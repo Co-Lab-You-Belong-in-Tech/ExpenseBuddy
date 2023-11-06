@@ -11,6 +11,7 @@ const Container = styled.div`
     justify-content: center;
     background-color: white;
     padding: 16px 20px;
+    overflow: auto;
 `
 const ImageWrapper = styled.div`
   display: flex;

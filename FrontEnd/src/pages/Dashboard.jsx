@@ -205,9 +205,9 @@ const Dashboard = () => {
               <TextDesc>
                 At tax time, you can claim a standard mileage rate for every mile driven
               </TextDesc>
-              <LearnMore>
+              {/* <LearnMore>
                 Learn More
-              </LearnMore>
+              </LearnMore> */}
             </TextBlockWrapper>
             <ArrowWrapper >
               <Link to="/trips">
