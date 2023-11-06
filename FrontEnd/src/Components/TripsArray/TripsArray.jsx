@@ -1,8 +1,14 @@
 import React, { useState, useEffect } from 'react'
+import styled from "styled-components"
 import ViewTripCard from '../ViewTripCard'
 
 const base_api_url = import.meta.env.VITE_APP_BASE_API
 const gian = import.meta.env.VITE_APP_GIAN
+
+const TripCardContainer = styled.div`
+  display: flex;
+  flex-direction: column-reverse;
+`
 
 export default function TripsArray({typeFilter, dateFilter}) {
   const [trips, setTrips] = useState([]);
@@ -28,6 +34,7 @@ export default function TripsArray({typeFilter, dateFilter}) {
 
   return (
     <>
+      <TripCardContainer>
       {
         loading ?
           <p>Loading...</p> :
@@ -44,6 +51,7 @@ export default function TripsArray({typeFilter, dateFilter}) {
             return isValid;
           }).map((tripData, index) => <ViewTripCard key={index} {...tripData} />)
       }
+      </TripCardContainer>
     </>
   )
 }

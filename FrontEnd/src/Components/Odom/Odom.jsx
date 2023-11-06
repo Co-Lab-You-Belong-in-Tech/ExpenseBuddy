@@ -365,6 +365,7 @@ export default function Odom() {
     }
 
     async function handleSaveOdom(data) {
+        if (!isValid) return;
         data.expense_mileage = parseInt(mileage)
         data.expense_dollar_amt = parseInt(reimbursedamt)
         data.user_id = 1
