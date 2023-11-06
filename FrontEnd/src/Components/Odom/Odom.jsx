@@ -216,8 +216,7 @@ const ValidationText = styled.div`
     font-family: Lexend;
     font-size: 14px;
     font-weight: 400;
-    padding-top: 15px;
-    padding-left: 15px;
+    padding: 15px 15px 0 15px;
 `
     
 const AlertMessage = styled.div`
