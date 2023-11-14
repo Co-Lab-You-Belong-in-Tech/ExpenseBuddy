@@ -342,7 +342,7 @@ export default function Odom() {
     let dt = new Date()
     dt.setDate(dt.getDate())
     let current_date = dt.toISOString().substring(0,10)
-    let current_time = dt.getHours() + ":" + dt.getMinutes()
+    let current_time = dt.getHours() + ":" + dt.getMinutes() 
     let mileage = endOdom - startOdom
     let reimbursedamt = (mileage * rate).toFixed(2)
 
