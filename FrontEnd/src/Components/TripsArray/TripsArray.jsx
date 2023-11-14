@@ -27,8 +27,8 @@ export default function TripsArray({typeFilter, dateFilter}) {
       if (!res.ok) {
         throw new Error("Failed to fetch")
       }
-      setTrips(await res.json());
-      setLoading(false);
+      setTrips(await res.json())
+      setLoading(false)
     })()
   }, [])
 
@@ -38,8 +38,8 @@ export default function TripsArray({typeFilter, dateFilter}) {
       {
         loading ?
           <p>Loading...</p> :
-          trips.length < 1 ?
-          <p>Looks like you do not have any trips in this date range.</p> :
+          trips.length === 0 ?
+          ( <p>Looks like you do not have any trips in this date range.</p> ) :
             trips.filter((trip) => {
               let isValid = true;
               
